@@ -1,0 +1,14 @@
+services:
+    grabber_proxy_config_manager:
+        class: Grabber\Bundle\GrabBundle\Service\ProxyConfigManager
+        arguments: [%proxy_file_config_path%]
+
+    grabber_proxy_client:
+        class: GuzzleHttp\Client
+        arguments: [{base_uri: %url_proxy_site%}]
+        
+#    grabber_grab.example:
+#        class: Grabber\Bundle\GrabBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+#        class: GuzzleHttp\Client
+#        arguments: [{base_uri: %sms_chat_api_url%}]
