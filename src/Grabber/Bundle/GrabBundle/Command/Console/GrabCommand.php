@@ -10,7 +10,6 @@ namespace Grabber\Bundle\GrabBundle\Command\Console;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class GrabCommand extends ContainerAwareCommand
@@ -44,8 +43,10 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        set_time_limit(3600);
-        $serviceId = $input->getArgument('serviceId');
+        //set_time_limit(3600);
+        //$serviceId = $input->getArgument('serviceId');
+        $proxy = $this->getContainer()->get('grabber_proxy_grabber');
+        $proxy->grab();
 
 
         $output->writeln("<info>Services have done</info>");

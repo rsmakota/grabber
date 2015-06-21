@@ -28,19 +28,34 @@ class ProxyGrabber implements GrabberInterface
     private $logger;
 
     /**
+     * @return Logger
+     */
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
+    /**
+     * @param Logger $logger
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+    }
+
+    /**
      * @param ProxyConfigManager $configManager
      * @param Client             $client
-     * @param Logger             $logger
      */
-    public function __construct(ProxyConfigManager $configManager, Client $client, Logger $logger)
+    public function __construct(ProxyConfigManager $configManager, Client $client)
     {
         $this->configManager = $configManager;
-        $this->logger        = $logger;
         $this->client        = $client;
     }
 
     public function grab()
     {
-
+        $response = $this->client->get('');
+        var_dump($response->getBody()->getContents());
     }
 }
