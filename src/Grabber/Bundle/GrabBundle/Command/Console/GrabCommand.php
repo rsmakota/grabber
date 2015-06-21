@@ -44,10 +44,9 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         //set_time_limit(3600);
-        //$serviceId = $input->getArgument('serviceId');
-        $proxy = $this->getContainer()->get('grabber_proxy_grabber');
+        $serviceId = $input->getArgument('serviceId');
+        $proxy = $this->getContainer()->get($serviceId);
         $proxy->grab();
-
 
         $output->writeln("<info>Services have done</info>");
     }
