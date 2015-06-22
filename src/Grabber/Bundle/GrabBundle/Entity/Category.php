@@ -7,14 +7,13 @@ namespace Grabber\Bundle\GrabBundle\Entity;
 use \Doctrine\ORM\Mapping as Orm;
 
 /**
- * Class City
+ * Class Category
  *
- * @package Grabber\Bundle\GrabBundle\Entity\City
- *
+ * @package Grabber\Bundle\GrabBundle\Entity
  * @ORM\Entity
- * @ORM\Table(name="cities")
+ * @ORM\Table(name="categories")
  */
-class City
+class Category 
 {
     /**
      * @ORM\Id
@@ -23,17 +22,10 @@ class City
      */
     protected $id;
 
-
     /**
      * @ORM\Column(type="string")
      */
     protected $name;
-
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\Region")
-     */
-    protected $region;
 
     public function getId()
     {
@@ -56,23 +48,10 @@ class City
     }
 
     /**
-     * @return Region
-     */
-    public function getRegion()
-    {
-        return $this->region;
-    }
-
-    public function setRegion($region)
-    {
-        $this->region = $region;
-    }
-
-    /**
      * @return string
      */
     public static function clazz()
     {
         return get_class();
     }
-} 
+}

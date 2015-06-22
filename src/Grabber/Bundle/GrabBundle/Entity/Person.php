@@ -6,39 +6,94 @@
 
 namespace Grabber\Bundle\GrabBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use \Doctrine\ORM\Mapping as Orm;
 /**
  * @ORM\Entity
  * @ORM\Table(name="persons")
  */
 class Person {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @ORM\Column(type=string)
      */
     private $name;
+
     /**
      * @ORM\Column(type=string)
      */
     private $msisdn;
+
     /**
      * @ORM\Column(type=string)
      */
     private $email;
+
     /**
-     * @ORM\ManyToMany(targetEntity="Source", inversedBy="persons")
+     * @ORM\ManyToMany(targetEntity="Source")
      * @ORM\JoinTable(name="persons_sources",
      *      joinColumns={@ORM\JoinColumn(name="person_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="source_id", referencedColumnName="id")}
      * )
      */
     private $sources;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Category")
+     * @ORM\JoinTable(name="persons_categories",
+     *      joinColumns={@ORM\JoinColumn(name="person_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     * )
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="City")
+     * @ORM\JoinTable(name="persons_cities",
+     *      joinColumns={@ORM\JoinColumn(name="person_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="city_id", referencedColumnName="id")}
+     * )
+     */
+    private $cities;
+
+    public function __construct()
+    {
+        $this->city     = new ArrayCollection();
+        $this->sources  = new ArrayCollection();
+        $this->category = new ArrayCollection();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCities()
+    {
+        return $this->cities;
+    }
+
+    public function setCities($cities)
+    {
+        $this->cities = $cities;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
 
     /**
      * @return integer
