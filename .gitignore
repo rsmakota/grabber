@@ -10,3 +10,7 @@
 /vendor/
 /bin/
 /composer.phar
+/.idea
+/.idea/*
+atlassian-ide-plugin.xml
+postgresql-9.1-901.jdbc3.jar
