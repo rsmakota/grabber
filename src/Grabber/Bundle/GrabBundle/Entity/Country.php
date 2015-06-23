@@ -19,9 +19,19 @@ class Country
     protected $id;
 
     /**
-     * @ORM\Column
+     * @ORM\Column(type="string")
      */
     protected $name;
+
+    /**
+    * @ORM\Column(type="string", name="native_name")
+    */
+    private $nativeName;
+
+    /**
+     * @ORM\Column(type="string", name="second_native_name")
+     */
+    private $secondNativeName;
 
     /**
      * @ORM\Column(type="string", length=3, options={"fixed" = true})
@@ -39,7 +49,7 @@ class Country
     protected $iso2;
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {
@@ -47,7 +57,7 @@ class Country
     }
 
     /**
-     * @param mixed $id
+     * @param integer $id
      */
     public function setId($id)
     {
@@ -55,7 +65,7 @@ class Country
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -63,7 +73,7 @@ class Country
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
     public function setName($name)
     {
@@ -71,7 +81,7 @@ class Country
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getIso3()
     {
@@ -79,7 +89,7 @@ class Country
     }
 
     /**
-     * @param mixed $iso3
+     * @param string $iso3
      */
     public function setIso3($iso3)
     {
@@ -87,7 +97,7 @@ class Country
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTz()
     {
@@ -95,7 +105,7 @@ class Country
     }
 
     /**
-     * @param mixed $tz
+     * @param string $tz
      */
     public function setTz($tz)
     {
@@ -103,7 +113,7 @@ class Country
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getIso2()
     {
@@ -111,13 +121,48 @@ class Country
     }
 
     /**
-     * @param mixed $iso2
+     * @return string
+     */
+    public function getNativeName()
+    {
+        return $this->nativeName;
+    }
+
+    /**
+     * @param string $nativeName
+     */
+    public function setNativeName($nativeName)
+    {
+        $this->nativeName = $nativeName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecondNativeName()
+    {
+        return $this->secondNativeName;
+    }
+
+    /**
+     * @param string $secondNativeName
+     */
+    public function setSecondNativeName($secondNativeName)
+    {
+        $this->secondNativeName = $secondNativeName;
+    }
+
+    /**
+     * @param string $iso2
      */
     public function setIso2($iso2)
     {
         $this->iso2 = $iso2;
     }
 
+    /**
+     * @return string
+     */
     public static function clazz()
     {
         return get_class();

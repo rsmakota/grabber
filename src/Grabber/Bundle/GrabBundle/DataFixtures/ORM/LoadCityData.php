@@ -16,34 +16,37 @@ use Doctrine\Common\Persistence\ObjectManager;
  *
  * @package Grabber\Bundle\GrabBundle\DataFixtures\ORM
  */
-class LoadCityData  extends AbstractFixture implements OrderedFixtureInterface
+class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
 {
 
     private $cities = [
-
-        "Apostolove",
-        "Vasylkivka",
-        "Verkhnodniprovsk",
-        "Dnipropetrovsk",
-        "Kryvyi Rih",
-        "Mezhova",
-        "Nikopol",
-        "Novomoskovsk",
-        "Pavlohrad",
-        "Petrykivka",
-        "Petropavlivka",
-        "Pokrovske",
-        "Piatykhatky",
-        "Synelnykove",
-        "Solone",
-        "Sofiivka",
-        "Tomakivka",
-        "Tsarychanka",
-        "Shyroke",
-        "Yurivka",
+        [
+            "areaCode" => "UP04", "cities" => [
+            "Apostolove",
+            "Vasylkivka",
+            "Verkhnodniprovsk",
+            "Dnipropetrovsk",
+            "Kryvyi Rih",
+            "Mezhova",
+            "Nikopol",
+            "Novomoskovsk",
+            "Pavlohrad",
+            "Petrykivka",
+            "Petropavlivka",
+            "Pokrovske",
+            "Piatykhatky",
+            "Synelnykove",
+            "Solone",
+            "Sofiivka",
+            "Tomakivka",
+            "Tsarychanka",
+            "Shyroke",
+            "Yurivka"]
+        ]
 
 
     ];
+
     /**
      * Load data fixtures with the passed EntityManager
      *

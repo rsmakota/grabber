@@ -21,35 +21,87 @@ class City
      * @ORM\Column(type = "integer")
      * @ORM\GeneratedValue(strategy = "AUTO")
      */
-    protected $id;
-
+    private $id;
 
     /**
      * @ORM\Column(type="string")
      */
-    protected $name;
+    private $name;
 
+    /**
+     * @ORM\Column(type="string", name="native_name")
+     */
+    private $nativeName;
+
+    /**
+     * @ORM\Column(type="string", name="second_native_name")
+     */
+    private $secondNativeName;
 
     /**
      * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\Region")
      */
-    protected $region;
+    private $region;
 
+    /**
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return string
+     */
+    public function getNativeName()
+    {
+        return $this->nativeName;
+    }
+
+    /**
+     * @param string $nativeName
+     */
+    public function setNativeName($nativeName)
+    {
+        $this->nativeName = $nativeName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecondNativeName()
+    {
+        return $this->secondNativeName;
+    }
+
+    /**
+     * @param string $secondNativeName
+     */
+    public function setSecondNativeName($secondNativeName)
+    {
+        $this->secondNativeName = $secondNativeName;
+    }
+
+    /**
+     * @param integer $id
+     */
     public function setId($id)
     {
         $this->id = $id;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * @param string
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -63,6 +115,9 @@ class City
         return $this->region;
     }
 
+    /**
+     * @param Region $region
+     */
     public function setRegion($region)
     {
         $this->region = $region;
