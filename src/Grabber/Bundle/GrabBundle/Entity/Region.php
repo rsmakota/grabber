@@ -12,9 +12,95 @@ namespace Grabber\Bundle\GrabBundle\Entity;
  * @package Grabber\Bundle\GrabBundle\Entity\Region
  *
  * @ORM\Entity
- * @ORM\Table(name="cities")
+ * @ORM\Table(name="regions")
  */
 class Region 
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type = "integer")
+     * @ORM\GeneratedValue(strategy = "AUTO")
+     */
+    protected $id;
+
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\Country")
+     */
+    protected $country;
+
+    /**
+     * @ORM\Column(type="string", length=4)
+     */
+    private $code;
+
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param integer $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+    /**
+     * @return Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param Country $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
 
 }
