@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Grabber\Bundle\GrabBundle\GrabberGrabBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Grabber\Bundle\GoogleApiBundle\GrabberGoogleApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -18,5 +18,7 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    #proxy_file_config_path: "%kernel.root_dir%/config/proxy_config.yml"
-    #url_proxy_site: "http://free-proxy-list.net/"
+    proxy_file_config_path: "%kernel.root_dir%/config/proxy_config.yml"
+    url_proxy_site: "http://free-proxy-list.net/"
+
+    google_geocode_uri: "https://maps.googleapis.com/maps/api/geocode/json"

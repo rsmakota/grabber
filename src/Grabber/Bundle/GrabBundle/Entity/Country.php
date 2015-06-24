@@ -49,6 +49,12 @@ class Country
     protected $iso2;
 
     /**
+     * Google id
+     * @ORM\Column(type="string", name="place_id")
+     */
+    protected $placeId;
+
+    /**
      * @return integer
      */
     public function getId()

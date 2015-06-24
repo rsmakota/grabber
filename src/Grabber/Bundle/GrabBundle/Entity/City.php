@@ -44,11 +44,27 @@ class City
     private $region;
 
     /**
+     * Google id
+     * @ORM\Column(type="string", name="place_id")
+     */
+    protected $placeId;
+
+    /**
      * @return integer
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getPlaceId()
+    {
+        return $this->placeId;
+    }
+
+    public function setPlaceId($placeId)
+    {
+        $this->placeId = $placeId;
     }
 
     /**

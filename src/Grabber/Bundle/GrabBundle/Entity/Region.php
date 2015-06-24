@@ -40,6 +40,12 @@ class Region
     private $code;
 
     /**
+     * Google id
+     * @ORM\Column(type="string", name="place_id")
+     */
+    protected $placeId;
+
+    /**
      * @return integer
      */
     public function getId()
