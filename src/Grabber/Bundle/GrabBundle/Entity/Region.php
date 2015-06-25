@@ -13,7 +13,7 @@ use \Doctrine\ORM\Mapping as Orm;
  *
  * @package Grabber\Bundle\GrabBundle\Entity\Region
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Grabber\Bundle\GrabBundle\ORM\RegionRepository")
  * @ORM\Table(name="regions")
  */
 class Region 
@@ -141,4 +141,11 @@ class Region
         $this->country = $country;
     }
 
+    /**
+     * @return string
+     */
+    public static function clazz()
+    {
+        return get_class();
+    }
 }

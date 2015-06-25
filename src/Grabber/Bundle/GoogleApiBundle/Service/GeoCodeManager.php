@@ -9,14 +9,14 @@ namespace Grabber\Bundle\GoogleApiBundle\Service;
 
 use Grabber\Bundle\GoogleApiBundle\Factory\Factory;
 
-class GeoCodeManager
+class GeoCodeManager implements GeoManagerInterface
 {
     /**
      * @var Factory
      */
     private $factory;
 
-    private $resultTypes = ['locality' => 'city', 'administrative_area_level_1' => 'area', 'country' => 'country'];
+    private $resultTypes = ['locality' => 'city', 'administrative_area_level_1' => 'region', 'country' => 'country'];
 
     /**
      * @param array $data
@@ -25,6 +25,7 @@ class GeoCodeManager
      */
     private function formatCityResponse(array $data)
     {
+        $result = [];
         foreach ($data[0]['address_components'] as $components) {
             $type = $components['types'][0];
             if (array_key_exists($type, $this->resultTypes )) {
@@ -83,7 +84,6 @@ class GeoCodeManager
             $command = $this->factory->createAddressCommand($params);
             $response = $command->send();
             if ($response->isOk()) {
-                //var_dump($response->getResults()); exit;
                 $result['data'][$lang]  = $this->formatCityResponse($response->getResults());
                 $result['type']         = $this->getTypeResult($response->getResults());
                 $result['place_id']     = $this->getPlaceId($response->getResults());

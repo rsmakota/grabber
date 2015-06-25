@@ -17,6 +17,11 @@ class Country
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    /**
+     * {'en', 'uk', 'ru'}
+     * @ORM\Column(type="json_array")
+     */
+    private $languages;
 
     /**
      * @ORM\Column(type="string")
@@ -53,6 +58,23 @@ class Country
      * @ORM\Column(type="string", name="place_id")
      */
     protected $placeId;
+
+    /**
+     * @return array
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * @param array $languages
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+    }
+
 
     public function getPlaceId()
     {

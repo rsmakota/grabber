@@ -24,6 +24,7 @@ class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
     {
         $country = new Country();
         $country->setName('Ukraine');
+        $country->setLanguages(['en', 'uk', 'ru']);
         $country->setIso2('UA');
         $country->setIso3('UKR');
         $country->setTz('Europe/Kiev');
