@@ -14,14 +14,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GeoCodeCommand extends ContainerAwareCommand
 {
     /**
-     * @return \Grabber\Bundle\GoogleApiBundle\Factory\Factory
-     */
-    private function getFactory()
-    {
-        return $this->getContainer()->get('google_api_factory');
-    }
-
-    /**
      * @return \Grabber\Bundle\GoogleApiBundle\Service\GeoCodeManager
      */
     private function getManager()
@@ -62,14 +54,6 @@ EOT
         $address = $input->getArgument('address');
         $result = $this->getManager()->findPlace($address, ['ru', 'uk', 'en'], 'UA');
         var_dump($result);
-//        $command = $this->getFactory()->createAddressCommand(['address' => $address]);
-//        $response = $command->send();
-//        if ($response->isSuccess()) {
-//            var_dump($response->getResults());
-//        } else {
-//            var_dump($response->getMessage());
-//        }
 
-        //$output->writeln("<info>Services have done</info>");
     }
 }

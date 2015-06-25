@@ -54,6 +54,16 @@ class Country
      */
     protected $placeId;
 
+    public function getPlaceId()
+    {
+        return $this->placeId;
+    }
+
+    public function setPlaceId($placeId)
+    {
+        $this->placeId = $placeId;
+    }
+
     /**
      * @return integer
      */

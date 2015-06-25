@@ -6,6 +6,8 @@
 
 namespace Grabber\Bundle\GrabBundle\Entity;
 
+
+use \Doctrine\ORM\Mapping as Orm;
 /**
  * Class Region
  *
@@ -25,9 +27,19 @@ class Region
 
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $name;
+
+    /**
+     * @ORM\Column(type="string", name="native_name", nullable=true)
+     */
+    private $nativeName;
+
+    /**
+     * @ORM\Column(type="string", name="second_native_name", nullable=true)
+     */
+    private $secondNativeName;
 
     /**
      * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\Country")
@@ -41,9 +53,29 @@ class Region
 
     /**
      * Google id
-     * @ORM\Column(type="string", name="place_id")
+     * @ORM\Column(type="string", name="place_id", nullable=true)
      */
     protected $placeId;
+
+    public function getNativeName()
+    {
+        return $this->nativeName;
+    }
+
+    public function setNativeName($nativeName)
+    {
+        $this->nativeName = $nativeName;
+    }
+
+    public function getSecondNativeName()
+    {
+        return $this->secondNativeName;
+    }
+
+    public function setSecondNativeName($secondNativeName)
+    {
+        $this->secondNativeName = $secondNativeName;
+    }
 
     /**
      * @return integer

@@ -10,6 +10,7 @@ namespace Grabber\Bundle\GrabBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Grabber\Bundle\GrabBundle\Entity\City;
 
 /**
  * Class LoadCityData
@@ -20,8 +21,6 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
 {
 
     private $cities = [
-        [
-            "areaCode" => "UP04", "cities" => [
             "Apostolove",
             "Vasylkivka",
             "Verkhnodniprovsk",
@@ -41,10 +40,7 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
             "Tomakivka",
             "Tsarychanka",
             "Shyroke",
-            "Yurivka"]
-        ]
-
-
+            "Yurivka"
     ];
 
     /**
@@ -54,7 +50,14 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        // TODO: Implement load() method.
+        $dnepr = $this->getReference("region:UP04");
+        foreach ($this->cities as $cityName) {
+            $city = new City();
+            $city->setName($cityName);
+            $manager->persist($city);
+        }
+
+        $manager->flush();
     }
 
     /**

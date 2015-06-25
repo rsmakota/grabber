@@ -29,6 +29,36 @@ class Source {
     private $url;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\Country")
+     */
+    private $country;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $service;
+
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    public function setService($service)
+    {
+        $this->service = $service;
+    }
+
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    /**
      * @return mixed
      */
     public function getId()

@@ -6,13 +6,12 @@
 
 namespace Grabber\Bundle\GrabBundle\DataFixtures\ORM;
 
-
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Grabber\Bundle\GrabBundle\Entity\Country;
+use Grabber\Bundle\GrabBundle\Entity\Source;
 
-class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
+class LoadSourceData extends AbstractFixture implements OrderedFixtureInterface
 {
 
     /**
@@ -22,17 +21,14 @@ class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $country = new Country();
-        $country->setName('Ukraine');
-        $country->setIso2('UA');
-        $country->setIso3('UKR');
-        $country->setTz('Europe/Kiev');
-        $country->setNativeName('Україна');
-        $country->setSecondNativeName('Украина');
-        $country->setPlaceId('ChIJjw5wVMHZ0UAREED2iIQGAQA');
-        $manager->persist($country);
-        $this->setReference('country:ukraine', $country);
+        $country = $this->getReference('country:ukraine');
+        $source = new Source();
+        $source->setName('Besplatka');
+        $source->setUrl('http://besplatka.ua');
+        $source->setCountry($country);
+        $source->setService('grabber_besplatka_service');
 
+        $manager->persist($source);
         $manager->flush();
     }
 
@@ -43,6 +39,6 @@ class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 100;
+        return 120;
     }
 }

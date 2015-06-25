@@ -33,14 +33,6 @@ class ProxyGrabber implements GrabberInterface
     private $pattern = "|>([0-9\\.]*)</td><td>([0-9]{2,4})</td><td>([A-Z]{2})</td><td>([a-zA-Z]*)</td><td>([a-zA-Z0-9 ]*)</td><td>([a-z]{2,3})</td><td>([a-z]{2,3})</td><td>([a-zA-Z0-9 ]*)|";
 
     /**
-     * @return Logger
-     */
-    public function getLogger()
-    {
-        return $this->logger;
-    }
-
-    /**
      * @param Logger $logger
      */
     public function setLogger($logger)
@@ -78,7 +70,6 @@ class ProxyGrabber implements GrabberInterface
         $params = explode(' ', $str);
         $i = 0 ;
         while ($i < count($params)) {
-            echo "- ".$params[$i]." ".$params[($i+1)] ." ";
             $i = $i + 2;
         }
 
@@ -91,7 +82,7 @@ class ProxyGrabber implements GrabberInterface
         $content = $response->getBody()->getContents();
         $proxyList = [];
         preg_match_all($this->pattern, $content, $out);
-        for($i = 1; $i < count($out[1]); $i++) {
+        for($i = 0; $i < count($out[1]); $i++) {
             $proxyList[] = [
                 "ip"        => $out[1][$i],
                 "port"      => $out[2][$i],

@@ -7,6 +7,8 @@
 namespace Grabber\Bundle\GrabBundle\Command\Console;
 
 
+use Grabber\Bundle\GrabBundle\Entity\Source;
+use Grabber\Bundle\GrabBundle\Grabber\BaseGrabber;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,6 +16,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class GrabCommand extends ContainerAwareCommand
 {
+    /**
+     * @param string $name
+     *
+     * @return null|Source
+     */
+    private function findSource($name)
+    {
+        $enManager = $this->getContainer()->get('doctrine.orm.entity_manager');
+
+        return $enManager->getRepository(Source::clazz())->findOneBy(['name' => $name]);
+    }
+
     /**
      * @see Console\Command\Command
      */
@@ -24,7 +38,7 @@ class GrabCommand extends ContainerAwareCommand
             ->setDescription('Start site grabbing')
             ->setDefinition(
                 array(
-                    new InputArgument('serviceId', InputArgument::REQUIRED, 'grabbing service ID'),
+                    new InputArgument('sourceName', InputArgument::REQUIRED, 'grabbing source name'),
                 )
             )
             ->setHelp(
@@ -44,10 +58,15 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         //set_time_limit(3600);
-        $serviceId = $input->getArgument('serviceId');
-        $proxy = $this->getContainer()->get($serviceId);
-        $proxy->grab();
+        $sourceName = $input->getArgument('sourceName');
+        $resource = $this->findSource($sourceName);
+        /** @var BaseGrabber $service */
+        $service = $this->getContainer()->get($resource->getService());
+        $service->setBaseUri($resource->getUrl());
+        $service->setCountry($resource->getCountry());
 
-        $output->writeln("<info>Services have done</info>");
+        $service->grab();
+
+        //$output->writeln("<info>Services have done</info>");
     }
 }

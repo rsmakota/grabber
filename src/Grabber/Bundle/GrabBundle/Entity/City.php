@@ -29,12 +29,12 @@ class City
     private $name;
 
     /**
-     * @ORM\Column(type="string", name="native_name")
+     * @ORM\Column(type="string", name="native_name", nullable=true)
      */
     private $nativeName;
 
     /**
-     * @ORM\Column(type="string", name="second_native_name")
+     * @ORM\Column(type="string", name="second_native_name", nullable=true)
      */
     private $secondNativeName;
 
@@ -45,7 +45,7 @@ class City
 
     /**
      * Google id
-     * @ORM\Column(type="string", name="place_id")
+     * @ORM\Column(type="string", name="place_id", nullable=true)
      */
     protected $placeId;
 

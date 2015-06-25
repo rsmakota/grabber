@@ -6,9 +6,14 @@ services:
     grabber_proxy_client:
         class: GuzzleHttp\Client
         arguments: [{base_uri: %url_proxy_site%}]
+
     grabber_proxy_grabber:
         class: Grabber\Bundle\GrabBundle\Grabber\ProxyGrabber
         arguments: [@grabber_proxy_config_manager, @grabber_proxy_client]
+
+    grabber_besplatka_service:
+        class: Grabber\Bundle\GrabBundle\Grabber\BesplatkaGrabber
+        arguments: [@doctrine.orm.entity_manager, @grabber_proxy_client]
 
 #    grabber_grab.example:
 #        class: Grabber\Bundle\GrabBundle\Example

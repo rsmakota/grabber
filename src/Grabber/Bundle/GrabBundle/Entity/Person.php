@@ -21,17 +21,17 @@ class Person {
     private $id;
 
     /**
-     * @ORM\Column(type=string)
+     * @ORM\Column(type="json_array", nullable=true)
      */
     private $name;
 
     /**
-     * @ORM\Column(type=string)
+     * @ORM\Column(type="string")
      */
     private $msisdn;
 
     /**
-     * @ORM\Column(type=string)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $email;
 
@@ -67,6 +67,16 @@ class Person {
         $this->city     = new ArrayCollection();
         $this->sources  = new ArrayCollection();
         $this->category = new ArrayCollection();
+    }
+
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    public function setCity($city)
+    {
+        $this->city = $city;
     }
 
     /**
