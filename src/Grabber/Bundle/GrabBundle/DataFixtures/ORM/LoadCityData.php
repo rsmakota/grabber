@@ -50,14 +50,14 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $dnepr = $this->getReference("region:UP04");
-        foreach ($this->cities as $cityName) {
-            $city = new City();
-            $city->setName($cityName);
-            $manager->persist($city);
-        }
-
-        $manager->flush();
+//        $dnepr = $this->getReference("region:UP04");
+//        foreach ($this->cities as $cityName) {
+//            $city = new City();
+//            $city->setName($cityName);
+//            $manager->persist($city);
+//        }
+//
+//        $manager->flush();
     }
 
     /**

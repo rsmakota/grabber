@@ -18,6 +18,9 @@ class GeoCodeManager implements GeoManagerInterface
 
     private $resultTypes = ['locality' => 'city', 'administrative_area_level_1' => 'region', 'country' => 'country'];
 
+    private $requestCount = 0;
+
+    private $timePoint;
     /**
      * @param array $data
      *
@@ -60,7 +63,22 @@ class GeoCodeManager implements GeoManagerInterface
     {
         return $data[0]['place_id'];
     }
-
+    private function sleepProcessor()
+    {
+        if (!$this->timePoint) {
+            $this->timePoint = microtime(true);
+        }
+        // The Google allows 5 requests per second
+        if ($this->requestCount > 3) {
+            if (microtime(true) < ($this->timePoint + 1)) {
+                time_sleep_until($this->timePoint + 1);
+            }
+            $this->requestCount = 0;
+            $this->timePoint = microtime(true);
+            return;
+        }
+        $this->requestCount ++;
+    }
     /**
      * @param string $name
      * @param array  $languages
@@ -73,22 +91,22 @@ class GeoCodeManager implements GeoManagerInterface
     {
         $result = [];
         foreach ($languages as $lang) {
-            $params = [
-                'address' => $name,
-                'language' => $lang
-            ];
+            $params = [ 'address' => $name, 'language' => $lang];
             if (null != $country) {
                 $params['country'] = $country;
             }
             $params = array_merge($params, $options);
             $command = $this->factory->createAddressCommand($params);
+            $this->sleepProcessor();
             $response = $command->send();
             if ($response->isOk()) {
                 $result['data'][$lang]  = $this->formatCityResponse($response->getResults());
                 $result['type']         = $this->getTypeResult($response->getResults());
                 $result['place_id']     = $this->getPlaceId($response->getResults());
             }
+
         }
+
         return $result;
     }
 }

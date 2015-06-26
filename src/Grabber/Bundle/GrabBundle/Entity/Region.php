@@ -47,7 +47,7 @@ class Region
     protected $country;
 
     /**
-     * @ORM\Column(type="string", length=4)
+     * @ORM\Column(type="string", length=4, nullable=true)
      */
     private $code;
 
@@ -56,6 +56,16 @@ class Region
      * @ORM\Column(type="string", name="place_id", nullable=true)
      */
     protected $placeId;
+
+    public function getPlaceId()
+    {
+        return $this->placeId;
+    }
+
+    public function setPlaceId($placeId)
+    {
+        $this->placeId = $placeId;
+    }
 
     public function getNativeName()
     {

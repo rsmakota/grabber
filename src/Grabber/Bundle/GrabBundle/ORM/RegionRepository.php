@@ -29,8 +29,8 @@ class RegionRepository extends EntityRepository
         $builder = $this->getEntityManager()->createQueryBuilder();
         $builder->select('r')
             ->from(Region::clazz(), 'r')
-            ->Where('(r.name = :name OR r.nativeName = :name OR r.secondNativeName)')
-            ->andWhere('country = :country')
+            ->Where('r.name = :name OR r.nativeName = :name OR r.secondNativeName = :name ')
+            ->andWhere('r.country = :country')
             ->setMaxResults(1)
             ->setParameter(':country', $country)
             ->setParameter(':name', $name);

@@ -56,17 +56,17 @@ class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         /** @var Country $ukraine */
-        $ukraine = $this->getReference('country:ukraine');
-        foreach ($this->uaAreas as $area) {
-            $region = new Region();
-            $region->setCountry($ukraine);
-            $region->setName($area["name"]);
-            $region->setCode($area["code"]);
-            $manager->persist($region);
-            $this->setReference("region:".$area["code"], $region);
-        }
-
-        $manager->flush();
+//        $ukraine = $this->getReference('country:ukraine');
+//        foreach ($this->uaAreas as $area) {
+//            $region = new Region();
+//            $region->setCountry($ukraine);
+//            $region->setName($area["name"]);
+//            $region->setCode($area["code"]);
+//            $manager->persist($region);
+//            $this->setReference("region:".$area["code"], $region);
+//        }
+//
+//        $manager->flush();
     }
 
     /**

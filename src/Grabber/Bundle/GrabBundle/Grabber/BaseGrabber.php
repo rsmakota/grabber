@@ -8,6 +8,7 @@ namespace Grabber\Bundle\GrabBundle\Grabber;
 
 use Doctrine\ORM\EntityManager;
 use Grabber\Bundle\GrabBundle\Entity\Country;
+use Grabber\Bundle\GrabBundle\Service\LocalityManager;
 use GuzzleHttp\Client;
 
 /**
@@ -17,10 +18,6 @@ use GuzzleHttp\Client;
  */
 class BaseGrabber implements GrabberInterface
 {
-    /**
-     * @var EntityManager
-     */
-    protected $entityManager;
     /**
      * @var string
      */
@@ -34,15 +31,19 @@ class BaseGrabber implements GrabberInterface
      * @var Client
      */
     protected $client;
+    /**
+     * @var LocalityManager
+     */
+    protected $localityManager;
 
     /**
-     * @param EntityManager $entityManager
-     * @param Client        $client
+     * @param LocalityManager $localityManager
+     * @param Client          $client
      */
-    public function __construct($entityManager, $client)
+    public function __construct($localityManager, $client)
     {
-        $this->entityManager = $entityManager;
-        $this->client        = $client;
+        $this->client          = $client;
+        $this->localityManager = $localityManager;
     }
 
     /**

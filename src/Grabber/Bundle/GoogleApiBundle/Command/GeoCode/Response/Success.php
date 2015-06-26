@@ -30,18 +30,6 @@ class Success extends AbstractResponse implements ResponseInterface
     /**
      * @return boolean
      */
-    public function isOk()
-    {
-        if ($this->status == 'OK') {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @return boolean
-     */
     public function isSuccess()
     {
         return true;

@@ -25,6 +25,17 @@ abstract class AbstractResponse implements ResponseInterface
         $this->status  = $data['status'];
     }
 
+    /**
+     * @return boolean
+     */
+    public function isOk()
+    {
+        if ($this->status == 'OK') {
+            return true;
+        }
+
+        return false;
+    }
 
     public function getData()
     {

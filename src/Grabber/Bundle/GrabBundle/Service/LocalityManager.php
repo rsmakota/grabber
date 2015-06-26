@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManager;
 use Grabber\Bundle\GoogleApiBundle\Service\GeoManagerInterface;
 use Grabber\Bundle\GrabBundle\Entity\Country;
 use Grabber\Bundle\GrabBundle\Entity\Region;
+use Grabber\Bundle\GrabBundle\Entity\RegionName;
 use Grabber\Bundle\GrabBundle\ORM\RegionRepository;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
@@ -33,9 +34,10 @@ class LocalityManager
      * @var EntityManager
      */
     protected $entityManager;
-
+    /**
+     * @var array
+     */
     protected $nameRound = ['name', 'nativeName', 'secondNativeName'];
-
 
     /**
      * @param GeoManagerInterface $geoManager
@@ -56,7 +58,7 @@ class LocalityManager
     {
         $type = $localityParams['type'];
         $data = $localityParams['data'];
-        $result = []; $i=0;
+        $result = ['placeId' => $localityParams['place_id']]; $i=0;
         foreach($data as $lang=>$params) {
             $result[$this->nameRound[$i]] = $params[$type];
             $i++;
@@ -79,11 +81,31 @@ class LocalityManager
         $region->setNativeName($bag->get('nativeName'));
         $region->setSecondNativeName($bag->get('secondNativeName'));
         $region->setCode($bag->get('code'));
+        $region->setPlaceId($bag->get('placeId'));
         $region->setCountry($country);
         $this->entityManager->persist($region);
         $this->entityManager->flush();
 
         return $region;
+    }
+
+    /**
+     * @param string $name
+     * @param Region $region
+     *
+     * @return RegionName
+     */
+    public function createRegionName($name, Region $region)
+    {
+        $regionName = new RegionName();
+        $regionName->setName($name);
+        $regionName->setRegion($region);
+        $regionName->setCountry($region->getCountry());
+
+        $this->entityManager->persist($regionName);
+        $this->entityManager->flush();
+
+        return $regionName;
     }
 
     /**
@@ -94,22 +116,33 @@ class LocalityManager
      */
     public function findRegion($name, $country)
     {
-        /** @var RegionRepository $repository */
-        $repository = $this->entityManager->getRepository(Region::clazz());
-        $region = $repository->findOneByName($name, $country);
+        /** @var RegionName $regionName */
+        $regionName = $this->entityManager->getRepository(RegionName::clazz())->findOneBy(['name' => $name, 'country' =>$country]);
+        if (null != $regionName) {
+            return $regionName->getRegion();
+        }
+        // getting google data by region name
+        $regionData = $this->geoManager->findPlace($name, $country->getLanguages(), $country->getIso2());
+        // Is the result a region
+        if ($regionData['type'] != self::LOCALITY_TYPE_REGION) {
+            // if google doesn't know this region we create own region and continue work
+            $region = $this->createRegion(['nativeName' => $name], $country);
+            $this->createRegionName($name, $region);
+            return $region;
+        }
+        // Trying find region by place_id
+        $region = $this->entityManager->getRepository(Region::clazz())->findOneBy(['placeId' => $regionData['place_id']]);
         if (null != $region) {
+            $this->createRegionName($name, $region);
             return $region;
         }
 
-        $regionData = $this->geoManager->findPlace($name, $country->getLanguages(), $country->getIso2());
-        if ($regionData['type'] != self::LOCALITY_TYPE_REGION) {
-            return null;
-        }
-
         $formatData = $this->formatLocalityData($regionData);
+        // It's new region and we are creating Region and RegionName
+        $region = $this->createRegion($formatData, $country);
+        $this->createRegionName($name, $region);
 
-        return $this->createRegion($formatData, $country);
-
+        return $region;
     }
 
 }

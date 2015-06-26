@@ -26,8 +26,8 @@ class CityRepository extends EntityRepository
         $builder = $this->getEntityManager()->createQueryBuilder();
         $builder->select('c')
             ->from(City::clazz(), 'c')
-            ->Where('(c.name = :name OR c.nativeName = :name OR c.secondNativeName)')
-            ->andWhere('region = :region')
+            ->Where('c.name = :name OR c.nativeName = :name OR c.secondNativeName = :name')
+            ->andWhere('c.region = :region')
             ->setMaxResults(1)
             ->setParameter(':region', $region)
             ->setParameter(':name', $name);
