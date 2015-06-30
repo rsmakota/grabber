@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="PostgreSQL - grabber@localhost" uuid="1582b165-9b44-4603-b9e9-7b8d6d8dfdc5">
+    <data-source name="PostgreSQL - grabber@localhost" uuid="30f4cf1b-c35a-4a50-9cea-10cfc9dec210">
       <secret-storage>master_key</secret-storage>
       <user-name>ts</user-name>
       <schema-pattern>grabber.pg_catalog grabber.public</schema-pattern>

@@ -8,14 +8,14 @@ namespace Grabber\Bundle\GrabBundle\Entity;
 
 use \Doctrine\ORM\Mapping as Orm;
 /**
- * Class Region
+ * Class City
  *
  * @package Grabber\Bundle\GrabBundle\Entity\RegionName
  *
  * @ORM\Entity()
- * @ORM\Table(name="region_names")
+ * @ORM\Table(name="city_names")
  */
-class RegionName 
+class CityName
 {
     /**
      * @ORM\Id
@@ -33,9 +33,9 @@ class RegionName
      */
     private $region;
     /**
-     * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\Country")
+     * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\City")
      */
-    private $country;
+    private $city;
 
     /**
      * @return integer
@@ -46,19 +46,19 @@ class RegionName
     }
 
     /**
-     * @return Country
+     * @return City
      */
-    public function getCountry()
+    public function getCity()
     {
-        return $this->country;
+        return $this->city;
     }
 
     /**
-     * @param Country $country
+     * @param City $city
      */
-    public function setCountry($country)
+    public function setCity($city)
     {
-        $this->country = $country;
+        $this->city = $city;
     }
 
     /**

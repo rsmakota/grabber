@@ -13,7 +13,7 @@ use \Doctrine\ORM\Mapping as Orm;
  *
  * @package Grabber\Bundle\GrabBundle\Entity\Region
  *
- * @ORM\Entity(repositoryClass="Grabber\Bundle\GrabBundle\ORM\RegionRepository")
+ * @ORM\Entity()
  * @ORM\Table(name="regions")
  */
 class Region 

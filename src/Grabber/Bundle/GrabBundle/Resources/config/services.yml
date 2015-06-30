@@ -15,9 +15,14 @@ services:
         class: Grabber\Bundle\GrabBundle\Service\LocalityManager
         arguments: [@google_api_manager, @doctrine.orm.entity_manager]
 
+    grabber_category_manager:
+        class: Grabber\Bundle\GrabBundle\Service\CategoryManager
+        arguments: [@doctrine.orm.entity_manager]
+
     grabber_besplatka_service:
         class: Grabber\Bundle\GrabBundle\Grabber\BesplatkaGrabber
-        arguments: [@grabber_locality_manager, @grabber_proxy_client]
+        arguments: [@grabber_locality_manager, @grabber_category_manager, @grabber_proxy_client]
+
 
 #    grabber_grab.example:
 #        class: Grabber\Bundle\GrabBundle\Example

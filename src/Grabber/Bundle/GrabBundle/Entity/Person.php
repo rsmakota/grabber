@@ -45,13 +45,13 @@ class Person {
     private $sources;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Category")
-     * @ORM\JoinTable(name="persons_categories",
+     * @ORM\ManyToMany(targetEntity="SubCategory")
+     * @ORM\JoinTable(name="persons_subcategories",
      *      joinColumns={@ORM\JoinColumn(name="person_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="subcategory_id", referencedColumnName="id")}
      * )
      */
-    private $category;
+    private $subcategories;
 
     /**
      * @ORM\ManyToMany(targetEntity="City")
@@ -62,47 +62,20 @@ class Person {
      */
     private $cities;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
+
     public function __construct()
     {
-        $this->city     = new ArrayCollection();
-        $this->sources  = new ArrayCollection();
-        $this->category = new ArrayCollection();
-    }
-
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    public function setCity($city)
-    {
-        $this->city = $city;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getCities()
-    {
-        return $this->cities;
-    }
-
-    public function setCities($cities)
-    {
-        $this->cities = $cities;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    public function setCategory($category)
-    {
-        $this->category = $category;
+        $this->cities        = new ArrayCollection();
+        $this->sources       = new ArrayCollection();
+        $this->subcategories = new ArrayCollection();
     }
 
     /**
@@ -170,7 +143,7 @@ class Person {
     }
 
     /**
-     * @return string
+     * @return ArrayCollection
      */
     public function getSources()
     {
@@ -178,13 +151,81 @@ class Person {
     }
 
     /**
-     * @param string $sources
+     * @param ArrayCollection $sources
      */
     public function setSources($sources)
     {
         $this->sources = $sources;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getSubcategories()
+    {
+        return $this->subcategories;
+    }
+
+    /**
+     * @param ArrayCollection $subcategories
+     */
+    public function setSubcategories($subcategories)
+    {
+        $this->subcategories = $subcategories;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCities()
+    {
+        return $this->cities;
+    }
+
+    /**
+     * @param ArrayCollection $cities
+     */
+    public function setCities($cities)
+    {
+        $this->cities = $cities;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \DateTime $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param \DateTime $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    }
+
+
+    /**
+     * @return string
+     */
     public static function clazz()
     {
         return get_class();
