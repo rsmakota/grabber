@@ -23,7 +23,17 @@ class BesplatkaGrabber extends BaseGrabber
      */
     protected $pagePattern = '|<a data-npage="([0-9]+)"[^>]*>|';
 
-    protected $announcementListPattern = '|<div class="one_message_title">[\s]*<a href="([^"]+)"><h3>|';
+    protected $announcementListPattern = '|<div class="one_message_title">[\s]*<a href="((?:(?!spec).)*)"><h3>|';
+
+    protected $msisdn = '|<div class="phone3">([0-9]*)&nbsp;</div>[\s]*<div class="mpphone">([0-9\s]*)</div>|';
+
+    protected $city = '|<div class="city">[\s]*Город:[\s]*<div class="text">([^<]+)</div>|';
+
+    protected $created = '|<div class="date_start">Добавлено: ([^<]+)</div>|';
+
+    protected $announceId = '|<div class="id_advert">ID объявления: ([^<]+)</div>|';
+
+    protected $name = '|<div class="name">([^<]+)</div>|';
     /**
      * @param string $name
      *

@@ -83,6 +83,10 @@ class ProxyGrabber implements GrabberInterface
         $proxyList = [];
         preg_match_all($this->pattern, $content, $out);
         for($i = 0; $i < count($out[1]); $i++) {
+            if ($out[5][$i] != 'elite proxy') {
+                continue;
+            }
+
             $proxyList[] = [
                 "ip"        => $out[1][$i],
                 "port"      => $out[2][$i],

@@ -8,7 +8,6 @@ namespace Grabber\Bundle\GrabBundle\Client;
 
 
 use Grabber\Bundle\GrabBundle\Service\ProxyConfigManager;
-use GuzzleHttp\Client;
 
 /**
  * Class ClientManager
@@ -26,12 +25,11 @@ class ClientManager implements ClientManagerInterface
      */
     private $proxyManager;
 
-    public function __construct(Client $client, ProxyConfigManager $proxyManager)
+    public function __construct(ProxyConfigManager $proxyManager)
     {
-        $this->client = $client;
+        $this->client = new Client();
         $this->proxyManager = $proxyManager;
     }
-
 
     /**
      * @param boolean $proxied
@@ -40,6 +38,12 @@ class ClientManager implements ClientManagerInterface
      */
     public function getClient($proxied = true)
     {
-        // TODO: Implement getClient() method.
+        if (!$proxied) {
+            return $this->client;
+        }
+        $conf = $this->proxyManager->selectConfig();
+        $this->client->setProxy($conf['ip'], $conf['port']);
+
+        return $this->client;
     }
 }

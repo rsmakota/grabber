@@ -7,20 +7,18 @@
 namespace Grabber\Bundle\GrabBundle\Command\Parse;
 
 /**
- * Class RegionCommand
+ * Class CategoryCommand
  *
  * @package Grabber\Bundle\GrabBundle\Command\Parse
  */
-class RegionCommand extends AbstractCommand
+class CategoryCommand extends AbstractCommand
 {
-    protected $regionTranslate = '';
-
     /**
      * @return string
      */
     public function getName()
     {
-        return 'region';
+        return 'category';
     }
 
     /**
@@ -30,17 +28,16 @@ class RegionCommand extends AbstractCommand
      */
     protected function formatResult(array $out)
     {
-        $regionList = [];
+        $categoryList = [];
         for ($i = 0; $i < count($out[1]); $i++) {
-            $regionList[] = [
-                "uri"    => $out[1][$i],
-                "region" => $out[2][$i],
+            $categoryList[] = [
+                "uri"      => $out[1][$i],
+                "category" => $out[2][$i],
 
             ];
         }
 
-        return $regionList;
+        return $categoryList;
     }
-
 
 }

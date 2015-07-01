@@ -11,6 +11,10 @@ services:
         class: Grabber\Bundle\GrabBundle\Grabber\ProxyGrabber
         arguments: [@grabber_proxy_config_manager, @grabber_proxy_client]
 
+    grabber_client_manager:
+        class: Grabber\Bundle\GrabBundle\Client\ClientManager
+        arguments: [@grabber_proxy_config_manager]
+
     grabber_locality_manager:
         class: Grabber\Bundle\GrabBundle\Service\LocalityManager
         arguments: [@google_api_manager, @doctrine.orm.entity_manager]

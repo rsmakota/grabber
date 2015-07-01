@@ -7,9 +7,22 @@
 namespace Grabber\Bundle\GrabBundle\Command\Parse;
 
 
-interface CommandInterface 
+use Grabber\Bundle\GrabBundle\Client\ClientInterface;
+
+interface CommandInterface
 {
-    public function parse($client);
+    /**
+     * @param string          $uri
+     * @param ClientInterface $client
+     *
+     * @return mixed
+     */
+    public function parse($uri, ClientInterface $client);
+
+    /**
+     * @return string
+     */
+    public function getName();
 
     /**
      * @param string $pattern

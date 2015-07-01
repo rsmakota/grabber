@@ -7,20 +7,19 @@
 namespace Grabber\Bundle\GrabBundle\Command\Parse;
 
 /**
- * Class RegionCommand
+ * Class AnnounceListCommand
  *
  * @package Grabber\Bundle\GrabBundle\Command\Parse
  */
-class RegionCommand extends AbstractCommand
+class AnnounceListCommand extends AbstractCommand
 {
-    protected $regionTranslate = '';
 
     /**
      * @return string
      */
     public function getName()
     {
-        return 'region';
+        return 'announce_list';
     }
 
     /**
@@ -33,9 +32,7 @@ class RegionCommand extends AbstractCommand
         $regionList = [];
         for ($i = 0; $i < count($out[1]); $i++) {
             $regionList[] = [
-                "uri"    => $out[1][$i],
-                "region" => $out[2][$i],
-
+                "uri"      => $out[1][$i]
             ];
         }
 
