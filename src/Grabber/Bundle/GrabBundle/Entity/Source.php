@@ -38,6 +38,22 @@ class Source {
      */
     private $service;
 
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $config = [];
+
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    public function setConfig($config)
+    {
+        $this->config = $config;
+    }
+
+
     public function getService()
     {
         return $this->service;

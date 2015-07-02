@@ -22,18 +22,39 @@ abstract class AbstractCommand implements CommandInterface
     protected $name;
 
     protected $response;
+    /**
+     * @var ClientInterface
+     */
+    protected $client;
+    /**
+     * @var string
+     */
+    protected $uri;
+
+    /**
+     * @param string       $uri
+     * @param string|array $pattern
+     */
+    public function __construct($uri, $pattern)
+    {
+        $this->uri     = $uri;
+        $this->pattern = $pattern;
+    }
+
+    public function setClient(ClientInterface $client)
+    {
+        $this->client = $client;
+    }
 
     abstract protected function formatResult(array $out);
+
     /**
-     * @param string          $uri
-     * @param ClientInterface $client
-     *
      * @return Fail|Success
      */
-    public function parse($uri, ClientInterface $client)
+    public function parse()
     {
         try {
-            $out = $this->getParseData($uri, $client);
+            $out = $this->getParseData($this->uri, $this->client);
 
             return new Success($this->formatResult($out));
         } catch (\Exception $e) {

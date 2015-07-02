@@ -6,9 +6,6 @@
 
 namespace Grabber\Bundle\GrabBundle\Client;
 
-
-use GuzzleHttp\Client;
-
 /**
  * Interface ClientManagerInterface
  *
@@ -21,5 +18,5 @@ interface ClientManagerInterface
      *
      * @return Client
      */
-    public function getClient($proxied);
+    public function getClient($proxied = true);
 }

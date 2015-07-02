@@ -21,11 +21,26 @@ class RegionHandler extends AbstractHandler
      */
     protected $localityManager;
 
-
-
+    /**
+     * @param ParameterBag $params
+     *
+     * @throws \Exception
+     */
     public function process(ParameterBag $params)
     {
-        // TODO: Implement process() method.
+        if ($params->get('name') != $this->getName() ) {
+            return $this->handler->process($params);
+        }
+        $response = $this->sendCommand($params->get('uri'), $params->get('pattern'));
+        if (!$response->isSuccess()) {
+            return;
+        }
+
+        foreach ($response->getData() as $category) {
+            $handleParams = new ParameterBag($params->get('handle'));
+            $handleParams->set('uri', $category['uri']);
+            $this->handler->process($handleParams);
+        }
     }
 
     /**
@@ -33,6 +48,6 @@ class RegionHandler extends AbstractHandler
      */
     public function getName()
     {
-        return 'region';
+        return 'Region';
     }
 }

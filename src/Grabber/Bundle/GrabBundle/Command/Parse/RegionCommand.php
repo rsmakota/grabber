@@ -13,7 +13,6 @@ namespace Grabber\Bundle\GrabBundle\Command\Parse;
  */
 class RegionCommand extends AbstractCommand
 {
-    protected $regionTranslate = '';
 
     /**
      * @return string

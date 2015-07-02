@@ -28,30 +28,20 @@ class AnnounceCommand extends AbstractCommand
 
     protected $personNamePattern;
 
-    public function setMsisdnPattern($msisdnPattern)
+    /**
+     * @param string       $uri
+     * @param string|array $pattern
+     */
+    public function __construct($uri, $pattern)
     {
-        $this->msisdnPattern = $msisdnPattern;
+        parent::__construct($uri, $pattern);
+        $this->msisdnPattern     = $pattern['msisdn'];
+        $this->cityPattern       = $pattern['city'];
+        $this->createdPattern    = $pattern['created'];
+        $this->announceIdPattern = $pattern['announceId'];
+        $this->personNamePattern = $pattern['personName'];
     }
 
-    public function setCityPattern($cityPattern)
-    {
-        $this->cityPattern = $cityPattern;
-    }
-
-    public function setCreatedPattern($createdPattern)
-    {
-        $this->createdPattern = $createdPattern;
-    }
-
-    public function setAnnounceIdPattern($announceIdPattern)
-    {
-        $this->announceIdPattern = $announceIdPattern;
-    }
-
-    public function setPersonNamePattern($personNamePattern)
-    {
-        $this->personNamePattern = $personNamePattern;
-    }
 
     /**
      * @return string
@@ -139,15 +129,12 @@ class AnnounceCommand extends AbstractCommand
 
 
     /**
-     * @param string          $uri
-     * @param ClientInterface $client
-     *
      * @return Fail|Success
      */
-    public function parse($uri, ClientInterface $client)
+    public function parse()
     {
         try {
-            $this->response = $client->get($uri);
+            $this->response = $this->client->get($this->uri);
             $data = [];
             if ($this->response->getHeader()['http_code'] != 200) {
                 throw new \Exception('http code is ' . $this->response->getHeader()['http_code'] );

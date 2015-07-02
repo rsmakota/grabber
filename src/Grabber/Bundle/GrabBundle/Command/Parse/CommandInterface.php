@@ -12,12 +12,9 @@ use Grabber\Bundle\GrabBundle\Client\ClientInterface;
 interface CommandInterface
 {
     /**
-     * @param string          $uri
-     * @param ClientInterface $client
-     *
      * @return mixed
      */
-    public function parse($uri, ClientInterface $client);
+    public function parse();
 
     /**
      * @return string
