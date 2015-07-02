@@ -9,6 +9,7 @@ namespace Grabber\Bundle\GrabBundle\Command\Console;
 
 use Grabber\Bundle\GrabBundle\Entity\Source;
 use Grabber\Bundle\GrabBundle\Grabber\BaseGrabber;
+use Grabber\Bundle\GrabBundle\Grabber\SimpleGrabber;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -60,10 +61,9 @@ EOT
         //set_time_limit(3600);
         $sourceName = $input->getArgument('sourceName');
         $resource = $this->findSource($sourceName);
-        /** @var BaseGrabber $service */
+        /** @var SimpleGrabber $service */
         $service = $this->getContainer()->get($resource->getService());
-        $service->setBaseUri($resource->getUrl());
-        $service->setCountry($resource->getCountry());
+        $service->setSource($resource);
 
         $service->grab();
 

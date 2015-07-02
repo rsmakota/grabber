@@ -6,6 +6,7 @@
 
 namespace Grabber\Bundle\GrabBundle\Handler;
 
+use Grabber\Bundle\GrabBundle\Entity\Country;
 use Grabber\Bundle\GrabBundle\Service\LocalityManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
@@ -22,23 +23,45 @@ class RegionHandler extends AbstractHandler
     protected $localityManager;
 
     /**
+     * @param LocalityManager $localityManager
+     */
+    public function setLocalityManager($localityManager)
+    {
+        $this->localityManager = $localityManager;
+    }
+
+    /**
+     * @param string $name
+     * @param string $area
+     *
+     * @return string
+     */
+    protected function formatRegionName($name, $area)
+    {
+        if (strpos($name, $area) !== false) {
+            return $name;
+        }
+
+        return $name." ".$area;
+    }
+
+    /**
      * @param ParameterBag $params
      *
      * @throws \Exception
      */
     public function process(ParameterBag $params)
     {
-        if ($params->get('name') != $this->getName() ) {
-            return $this->handler->process($params);
-        }
+        /** @var Country $country */
+        $country = $params->get('country');
         $response = $this->sendCommand($params->get('uri'), $params->get('pattern'));
-        if (!$response->isSuccess()) {
-            return;
-        }
-
         foreach ($response->getData() as $category) {
+            $regionName = $this->formatRegionName($category['region'], $country->getAreaName());
+            $region = $this->localityManager->findRegion($regionName, $country);
             $handleParams = new ParameterBag($params->get('handle'));
             $handleParams->set('uri', $category['uri']);
+            $handleParams->set('region', $region);
+            //exit;
             $this->handler->process($handleParams);
         }
     }

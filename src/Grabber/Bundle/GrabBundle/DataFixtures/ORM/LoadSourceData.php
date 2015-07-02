@@ -26,7 +26,7 @@ class LoadSourceData extends AbstractFixture implements OrderedFixtureInterface
         $source->setName('Besplatka');
         $source->setUrl('http://besplatka.ua');
         $source->setCountry($country);
-        $source->setService('grabber_besplatka_service');
+        $source->setService('grabber_simple_grabber');
         $source->setConfig([
             'handle' => [
                 'name' => 'Region',

@@ -27,6 +27,19 @@ services:
         class: Grabber\Bundle\GrabBundle\Grabber\BesplatkaGrabber
         arguments: [@grabber_locality_manager, @grabber_category_manager, @grabber_proxy_client]
 
+    grabber_parce_command_factory:
+        class: Grabber\Bundle\GrabBundle\Factory\ParseCommandFactory
+
+    grabber_region_handler:
+        class: Grabber\Bundle\GrabBundle\Handler\RegionHandler
+        arguments: [@grabber_client_manager, @grabber_parce_command_factory]
+        calls:
+            - [setLocalityManager, [@grabber_locality_manager]]
+
+    grabber_simple_grabber:
+        class: Grabber\Bundle\GrabBundle\Grabber\SimpleGrabber
+        calls:
+            - [setHandle, [@grabber_region_handler]]
 
 #    grabber_grab.example:
 #        class: Grabber\Bundle\GrabBundle\Example

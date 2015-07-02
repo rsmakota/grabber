@@ -58,6 +58,27 @@ class Country
      * @ORM\Column(type="string", name="place_id")
      */
     protected $placeId;
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $areaName;
+
+    /**
+     * @return string
+     */
+    public function getAreaName()
+    {
+        return $this->areaName;
+    }
+
+    /**
+     * @param string $areaName
+     */
+    public function setAreaName($areaName)
+    {
+        $this->areaName = $areaName;
+    }
+
 
     /**
      * @return array

@@ -29,11 +29,6 @@ abstract class AbstractHandler implements HandlerInterface
     protected $clientManager;
 
     /**
-     * @var string|array
-     */
-    protected $pattern;
-
-    /**
      * @var ParseCommandFactory
      */
     protected $commandFactory;
@@ -79,7 +74,7 @@ abstract class AbstractHandler implements HandlerInterface
         $command = $this->commandFactory->$method(
             $uri,
             $pattern,
-            $this->clientManager->getClient()
+            $this->clientManager->getClient(false)
         );
 
         return $command->parse();

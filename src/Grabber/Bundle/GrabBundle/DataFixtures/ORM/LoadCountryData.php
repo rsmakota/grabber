@@ -31,6 +31,7 @@ class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
         $country->setNativeName('Україна');
         $country->setSecondNativeName('Украина');
         $country->setPlaceId('ChIJjw5wVMHZ0UAREED2iIQGAQA');
+        $country->setAreaName('область');
         $manager->persist($country);
         $this->setReference('country:ukraine', $country);
 
