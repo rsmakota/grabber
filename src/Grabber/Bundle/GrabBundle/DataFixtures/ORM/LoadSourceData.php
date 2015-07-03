@@ -48,7 +48,8 @@ class LoadSourceData extends AbstractFixture implements OrderedFixtureInterface
                                     'created'    => '|<div class="date_start">Добавлено: ([^<]+)</div>|',
                                     'announceId' => '|<div class="id_advert">ID объявления: ([^<]+)</div>|',
                                     'personName' => '|<div class="name">([^<]+)</div>|'
-                                ]
+                                ],
+                                'createdFormat' => 'd.m.Y'
                             ]
                         ]
                     ]

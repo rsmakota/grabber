@@ -23,7 +23,7 @@ class Person {
     /**
      * @ORM\Column(type="json_array", nullable=true)
      */
-    private $name;
+    private $name=[];
 
     /**
      * @ORM\Column(type="string")
@@ -36,22 +36,22 @@ class Person {
     private $email;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Source")
-     * @ORM\JoinTable(name="persons_sources",
+     * @ORM\ManyToMany(targetEntity="Announce")
+     * @ORM\JoinTable(name="persons_announces",
      *      joinColumns={@ORM\JoinColumn(name="person_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="source_id", referencedColumnName="id")}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="announce_id", referencedColumnName="id")}
      * )
      */
-    private $sources;
+    private $announces;
 
     /**
-     * @ORM\ManyToMany(targetEntity="SubCategory")
-     * @ORM\JoinTable(name="persons_subcategories",
+     * @ORM\ManyToMany(targetEntity="Category")
+     * @ORM\JoinTable(name="persons_categories",
      *      joinColumns={@ORM\JoinColumn(name="person_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="subcategory_id", referencedColumnName="id")}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
      * )
      */
-    private $subcategories;
+    private $categories;
 
     /**
      * @ORM\ManyToMany(targetEntity="City")
@@ -73,9 +73,31 @@ class Person {
 
     public function __construct()
     {
-        $this->cities        = new ArrayCollection();
-        $this->sources       = new ArrayCollection();
-        $this->subcategories = new ArrayCollection();
+        $this->cities     = new ArrayCollection();
+        $this->announces  = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+    }
+
+    public function addCity(City $city)
+    {
+        if ($this->cities->contains($city)) {
+            return;
+        }
+
+        $this->cities->add($city);
+    }
+
+    public function addAnnounce(Announce $announce)
+    {
+        $this->announces->add($announce);
+    }
+
+    public function addCategory(Category $category)
+    {
+        if ($this->categories->contains($category)) {
+            return;
+        }
+        $this->categories->add($category);
     }
 
     /**
@@ -95,7 +117,7 @@ class Person {
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getName()
     {
@@ -103,11 +125,21 @@ class Person {
     }
 
     /**
-     * @param string $name
+     * @param array $name
      */
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function addName($name)
+    {
+        if (!empty($name) && !in_array($name, $this->name)) {
+           $this->name[] = $name;
+        }
     }
 
     /**
@@ -145,34 +177,35 @@ class Person {
     /**
      * @return ArrayCollection
      */
-    public function getSources()
+    public function getAnnounces()
     {
-        return $this->sources;
+        return $this->announces;
     }
 
     /**
-     * @param ArrayCollection $sources
+     * @param  ArrayCollection $announces
      */
-    public function setSources($sources)
+    public function setAnnounces($announces)
     {
-        $this->sources = $sources;
+        $this->announces = $announces;
     }
 
     /**
      * @return ArrayCollection
      */
-    public function getSubcategories()
+    public function getCategories()
     {
-        return $this->subcategories;
+        return $this->categories;
     }
 
     /**
-     * @param ArrayCollection $subcategories
+     * @param $categories
      */
-    public function setSubcategories($subcategories)
+    public function setCategories($categories)
     {
-        $this->subcategories = $subcategories;
+        $this->categories = $categories;
     }
+
 
     /**
      * @return ArrayCollection

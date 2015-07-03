@@ -8,7 +8,10 @@ namespace Grabber\Bundle\GrabBundle\Handler;
 
 use Grabber\Bundle\GrabBundle\Client\ClientManagerInterface;
 use Grabber\Bundle\GrabBundle\Command\Parse\Response\ResponseInterface;
+use Grabber\Bundle\GrabBundle\Entity\Category;
+use Grabber\Bundle\GrabBundle\Entity\Source;
 use Grabber\Bundle\GrabBundle\Factory\ParseCommandFactory;
+use Proxies\__CG__\Grabber\Bundle\GrabBundle\Entity\Region;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 /**
@@ -32,7 +35,30 @@ abstract class AbstractHandler implements HandlerInterface
      * @var ParseCommandFactory
      */
     protected $commandFactory;
+    /**
+     * @var Category
+     */
+    protected $category;
+    /**
+     * @var Region
+     */
+    protected $region;
 
+    /**
+     * @param Source $source
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+        if ($this->handler) {
+            $this->handler->setSource($source);
+        }
+    }
+
+    /**
+     * @var Source
+     */
+    protected $source;
     /**
      * @param ClientManagerInterface $clientManager
      * @param ParseCommandFactory    $commandFactory
@@ -41,6 +67,29 @@ abstract class AbstractHandler implements HandlerInterface
     {
         $this->clientManager  = $clientManager;
         $this->commandFactory = $commandFactory;
+    }
+
+    /**
+     * @param Category $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+        if ($this->handler) {
+            $this->handler->setCategory($category);
+        }
+
+    }
+
+    /**
+     * @param Region $region
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+        if ($this->handler) {
+            $this->handler->setRegion($region);
+        }
     }
 
     public function setHandler(HandlerInterface $handler)

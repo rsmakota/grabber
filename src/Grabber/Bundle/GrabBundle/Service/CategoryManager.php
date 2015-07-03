@@ -33,23 +33,6 @@ class CategoryManager extends BaseManager
     }
 
     /**
-     * @param string   $name
-     * @param Category $category
-     *
-     * @return Subcategory
-     */
-    protected function createSubcategory($name, Category $category)
-    {
-        $subcategory = new Subcategory();
-        $subcategory->setName($name);
-        $subcategory->setCategory($category);
-        $this->entityManager->persist($subcategory);
-        $this->entityManager->flush();
-
-        return $category;
-    }
-
-    /**
      * @param string $name
      *
      * @return Category
@@ -63,22 +46,5 @@ class CategoryManager extends BaseManager
 
         return $this->createCategory($name);
     }
-
-    /**
-     * @param string   $name
-     * @param Category $category
-     *
-     * @return Subcategory
-     */
-    public function getSubcategory($name, Category $category)
-    {
-        $subcategory = $this->entityManager->getRepository(Subcategory::clazz())->findOneBy(['name' => $name, 'category'=>$category]);
-        if (null != $subcategory) {
-            return $subcategory;
-        }
-
-        return $this->createSubcategory($name, $category);
-    }
-
 
 }

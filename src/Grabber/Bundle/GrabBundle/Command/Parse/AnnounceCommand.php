@@ -121,9 +121,11 @@ class AnnounceCommand extends AbstractCommand
      */
     protected function parsePersonName($text)
     {
-        preg_match_all($this->personNamePattern, $text, $out);
+        if (preg_match_all($this->personNamePattern, $text, $out)) {
+            return trim($out[1][0]);
+        }
 
-        return trim($out[1][0]);
+        return '';
     }
 
 

@@ -35,7 +35,7 @@ class PageCommand extends AbstractCommand
             }
         }
 
-        return ["pages" => $pages];
+        return ['pages' => $pages];
     }
 
 }

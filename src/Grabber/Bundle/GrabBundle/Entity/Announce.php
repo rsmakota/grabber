@@ -11,9 +11,9 @@ use \Doctrine\ORM\Mapping as Orm;
  *
  * @package Grabber\Bundle\GrabBundle\Entity
  * @ORM\Entity
- * @ORM\Table(name="announcements")
+ * @ORM\Table(name="announces")
  */
-class Announcement
+class Announce
 {
     /**
      * @ORM\Id
@@ -26,21 +26,63 @@ class Announcement
      * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\Source")
      */
     private $source;
-
     /**
-     * @ORM\ManyToMany(targetEntity="Person")
-     * @ORM\JoinTable(name="persons_announcements",
-     *      joinColumns={@ORM\JoinColumn(name="announcement_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="person_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\Category")
      */
-    private $persons;
+    private $category;
 
     /**
      * ID on the resource
-     * @ORM\Column(type = "string")
+     * @ORM\Column(type = "integer")
      */
     private $index;
+
+    /**
+     * @ORM\Column(type = "string")
+     */
+    private $uri;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    /**
+     * @param string $uri
+     */
+    public function setUri($uri)
+    {
+        $this->uri = $uri;
+    }
+
 
     /**
      * @return mixed
@@ -74,21 +116,6 @@ class Announcement
         $this->source = $source;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPersons()
-    {
-        return $this->persons;
-    }
-
-    /**
-     * @param mixed $persons
-     */
-    public function setPersons($persons)
-    {
-        $this->persons = $persons;
-    }
 
     /**
      * @return mixed

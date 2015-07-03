@@ -15,6 +15,9 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
  */
 interface HandlerInterface
 {
+    public function setSource($source);
+    public function setCategory($category);
+    public function setRegion($region);
     /**
      * @param ParameterBag $params
      */

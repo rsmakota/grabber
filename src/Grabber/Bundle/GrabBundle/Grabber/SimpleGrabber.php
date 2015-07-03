@@ -35,6 +35,9 @@ class SimpleGrabber implements GrabberInterface
     public function setSource($source)
     {
         $this->source = $source;
+        if ($this->handle) {
+            $this->handle->setSource($source);
+        }
     }
 
     /**
@@ -45,7 +48,6 @@ class SimpleGrabber implements GrabberInterface
         $config = $this->source->getConfig();
         $bag = new ParameterBag($config['handle']);
         $bag->set('uri', $this->source->getUrl());
-        $bag->set('country', $this->source->getCountry());
 
         return $bag;
     }

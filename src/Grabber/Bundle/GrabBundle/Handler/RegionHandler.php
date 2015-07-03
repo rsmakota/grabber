@@ -53,16 +53,17 @@ class RegionHandler extends AbstractHandler
     public function process(ParameterBag $params)
     {
         /** @var Country $country */
-        $country = $params->get('country');
+        $country = $this->source->getCountry();
         $response = $this->sendCommand($params->get('uri'), $params->get('pattern'));
-        foreach ($response->getData() as $category) {
-            $regionName = $this->formatRegionName($category['region'], $country->getAreaName());
+        $handleParams = new ParameterBag($params->get('handle'));
+        foreach ($response->getData() as $regionData) {
+            $regionName = $this->formatRegionName($regionData['region'], $country->getAreaName());
             $region = $this->localityManager->findRegion($regionName, $country);
-            $handleParams = new ParameterBag($params->get('handle'));
-            $handleParams->set('uri', $category['uri']);
-            $handleParams->set('region', $region);
-            //exit;
+            $this->handler->setRegion($region);
+            $handleParams->set('uri', $regionData['uri']);
+
             $this->handler->process($handleParams);
+            var_dump($region->getName());
         }
     }
 
