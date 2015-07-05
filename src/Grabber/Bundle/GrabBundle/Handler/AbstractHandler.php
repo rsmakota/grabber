@@ -11,6 +11,7 @@ use Grabber\Bundle\GrabBundle\Command\Parse\Response\ResponseInterface;
 use Grabber\Bundle\GrabBundle\Entity\Category;
 use Grabber\Bundle\GrabBundle\Entity\Source;
 use Grabber\Bundle\GrabBundle\Factory\ParseCommandFactory;
+use Monolog\Logger;
 use Proxies\__CG__\Grabber\Bundle\GrabBundle\Entity\Region;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
@@ -43,6 +44,10 @@ abstract class AbstractHandler implements HandlerInterface
      * @var Region
      */
     protected $region;
+    /**
+     * @var Logger
+     */
+    protected $logger;
 
     /**
      * @param Source $source
@@ -67,6 +72,14 @@ abstract class AbstractHandler implements HandlerInterface
     {
         $this->clientManager  = $clientManager;
         $this->commandFactory = $commandFactory;
+    }
+
+    /**
+     * @param Logger $logger
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
     }
 
     /**

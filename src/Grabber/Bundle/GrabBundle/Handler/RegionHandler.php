@@ -54,7 +54,9 @@ class RegionHandler extends AbstractHandler
     {
         /** @var Country $country */
         $country = $this->source->getCountry();
+        $this->logger->addDebug('Init ' . $this->getName() . ' parse uri ' . $params->get('uri'));
         $response = $this->sendCommand($params->get('uri'), $params->get('pattern'));
+        $this->logger->addDebug('Result ', $response->getData());
         $handleParams = new ParameterBag($params->get('handle'));
         foreach ($response->getData() as $regionData) {
             $regionName = $this->formatRegionName($regionData['region'], $country->getAreaName());
@@ -63,7 +65,6 @@ class RegionHandler extends AbstractHandler
             $handleParams->set('uri', $regionData['uri']);
 
             $this->handler->process($handleParams);
-            var_dump($region->getName());
         }
     }
 

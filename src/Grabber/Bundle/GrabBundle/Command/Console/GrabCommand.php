@@ -8,7 +8,6 @@ namespace Grabber\Bundle\GrabBundle\Command\Console;
 
 
 use Grabber\Bundle\GrabBundle\Entity\Source;
-use Grabber\Bundle\GrabBundle\Grabber\BaseGrabber;
 use Grabber\Bundle\GrabBundle\Grabber\SimpleGrabber;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;

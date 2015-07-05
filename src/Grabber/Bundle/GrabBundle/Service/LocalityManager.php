@@ -207,7 +207,7 @@ class LocalityManager extends BaseManager
         // Is the result a region
         if ($cityData['type'] != self::LOCALITY_TYPE_CITY) {
             // if google doesn't know this city we create own city and continue work
-            $city = $this->createCity(['nativeName' => $name], $region);
+            $city = $this->createCity(['nativeName' => $name, 'name' => 'UNKNOWN'], $region);
             $this->createCityName($name, $city);
             return $city;
         }

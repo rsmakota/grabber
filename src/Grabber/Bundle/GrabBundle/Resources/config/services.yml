@@ -47,18 +47,27 @@ services:
             - [setPersonManager,   [@grabber_person_manager]  ]
             - [setLocalityManager, [@grabber_locality_manager]]
             - [setAnnounceManager, [@grabber_announce_manager]]
+            - [setLogger, [@logger]]
+        tags:
+            - {name: monolog.logger, channel: grabber}
 
     grabber_announce_list_handler:
         class: Grabber\Bundle\GrabBundle\Handler\AnnounceListHandler
         arguments: [@grabber_client_manager, @grabber_parce_command_factory]
         calls:
             - [setHandler, [@grabber_announce_handler]]
+            - [setLogger, [@logger]]
+        tags:
+            - {name: monolog.logger, channel: grabber}
 
     grabber_page_handler:
         class: Grabber\Bundle\GrabBundle\Handler\PageHandler
         arguments: [@grabber_client_manager, @grabber_parce_command_factory]
         calls:
             - [setHandler, [@grabber_announce_list_handler]]
+            - [setLogger, [@logger]]
+        tags:
+            - {name: monolog.logger, channel: grabber}
 
     grabber_category_handler:
         class: Grabber\Bundle\GrabBundle\Handler\CategoryHandler
@@ -66,6 +75,9 @@ services:
         calls:
             - [setCategoryManager, [@grabber_category_manager]]
             - [setHandler, [@grabber_page_handler]]
+            - [setLogger, [@logger]]
+        tags:
+            - {name: monolog.logger, channel: grabber}
 
     grabber_region_handler:
         class: Grabber\Bundle\GrabBundle\Handler\RegionHandler
@@ -73,11 +85,17 @@ services:
         calls:
             - [setLocalityManager, [@grabber_locality_manager]]
             - [setHandler, [@grabber_category_handler]]
+            - [setLogger, [@logger]]
+        tags:
+            - {name: monolog.logger, channel: grabber}
 
     grabber_simple_grabber:
         class: Grabber\Bundle\GrabBundle\Grabber\SimpleGrabber
+        arguments: [@logger]
         calls:
             - [setHandle, [@grabber_region_handler]]
+        tags:
+            - {name: monolog.logger, channel: grabber}
 
 #    grabber_grab.example:
 #        class: Grabber\Bundle\GrabBundle\Example

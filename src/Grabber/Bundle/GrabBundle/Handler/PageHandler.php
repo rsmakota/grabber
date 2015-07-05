@@ -40,7 +40,9 @@ class PageHandler extends AbstractHandler
      */
     public function process(ParameterBag $params)
     {
+        $this->logger->addDebug('Init ' . $this->getName() . ' parse uri ' . $params->get('uri'));
         $response = $this->sendCommand($params->get('uri'), $params->get('pattern'));
+        $this->logger->addDebug('Result ', $response->getData());
         $handleParams = new ParameterBag($params->get('handle'));
         $data = $response->getData();
         $handleParams->set('pages', $data['pages']);

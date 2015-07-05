@@ -11,6 +11,7 @@ namespace Grabber\Bundle\GrabBundle\Grabber;
 
 use Grabber\Bundle\GrabBundle\Entity\Source;
 use Grabber\Bundle\GrabBundle\Handler\HandlerInterface;
+use Monolog\Logger;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 /**
@@ -28,6 +29,15 @@ class SimpleGrabber implements GrabberInterface
      * @var Source
      */
     protected $source;
+    /**
+     * @var Logger
+     */
+    protected $logger;
+
+    public function __construct($logger)
+    {
+        $this->logger = $logger;
+    }
 
     /**
      * @param Source $source
@@ -62,6 +72,7 @@ class SimpleGrabber implements GrabberInterface
 
     public function grab()
     {
+        $this->logger->debug('Start grabbing for source '.$this->source->getName(), $this->getProcessBag()->all());
         $this->handle->process($this->getProcessBag());
     }
 }
