@@ -64,6 +64,48 @@ class Country
     protected $areaName;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $prefix;
+
+    /**
+     * @return mixed
+     */
+    public function getPrefix()
+    {
+        return $this->prefix;
+    }
+
+    /**
+     * @param mixed $prefix
+     */
+    public function setPrefix($prefix)
+    {
+        $this->prefix = $prefix;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMsisdnLength()
+    {
+        return $this->msisdnLength;
+    }
+
+    /**
+     * @param mixed $msisdnLength
+     */
+    public function setMsisdnLength($msisdnLength)
+    {
+        $this->msisdnLength = $msisdnLength;
+    }
+
+    /**
+     * @ORM\Column(type="integer", name="msisdn_length")
+     */
+    protected $msisdnLength;
+
+    /**
      * @return string
      */
     public function getAreaName()

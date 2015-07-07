@@ -12,6 +12,11 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Grabber\Bundle\GrabBundle\Entity\Country;
 
+/**
+ * Class LoadCountryData
+ * 
+ * @package Grabber\Bundle\GrabBundle\DataFixtures\ORM
+ */
 class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
 {
 
@@ -32,6 +37,8 @@ class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
         $country->setSecondNativeName('Украина');
         $country->setPlaceId('ChIJjw5wVMHZ0UAREED2iIQGAQA');
         $country->setAreaName('область');
+        $country->getMsisdnLength(12);
+        $country->setPrefix('380');
         $manager->persist($country);
         $this->setReference('country:ukraine', $country);
 
