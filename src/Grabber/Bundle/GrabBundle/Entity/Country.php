@@ -69,6 +69,29 @@ class Country
     protected $prefix;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $pattern;
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getPattern()
+    {
+        return $this->pattern;
+    }
+
+    /**
+     * @param mixed $pattern
+     */
+    public function setPattern($pattern)
+    {
+        $this->pattern = $pattern;
+    }
+
+    /**
      * @return mixed
      */
     public function getPrefix()
@@ -259,6 +282,31 @@ class Country
     public function setIso2($iso2)
     {
         $this->iso2 = $iso2;
+    }
+
+    /**
+     * @param string $msisdn
+     * @return string
+     */
+    public function formatMsisdn($msisdn)
+    {
+        $length = strlen($msisdn);
+        if ($length < $this->msisdnLength) {
+            $prefix = substr($this->prefix, 0, $this->msisdnLength - $length);
+            $msisdn = $prefix.$msisdn;
+        }
+
+        return $msisdn;
+    }
+
+    /**
+     * @param $msisdn
+     *
+     * @return boolean
+     */
+    public function isValidMsisdn($msisdn)
+    {
+        return (boolean) preg_match($this->pattern, $msisdn);
     }
 
     /**

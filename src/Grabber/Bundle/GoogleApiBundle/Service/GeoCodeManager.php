@@ -98,11 +98,15 @@ class GeoCodeManager implements GeoManagerInterface
             $params = array_merge($params, $options);
             $command = $this->factory->createAddressCommand($params);
             $this->sleepProcessor();
-            $response = $command->send();
-            if ($response->isOk()) {
-                $result['data'][$lang]  = $this->formatCityResponse($response->getResults());
-                $result['type']         = $this->getTypeResult($response->getResults());
-                $result['place_id']     = $this->getPlaceId($response->getResults());
+            try {
+                $response = $command->send();
+                if ($response->isOk()) {
+                    $result['data'][$lang] = $this->formatCityResponse($response->getResults());
+                    $result['type'] = $this->getTypeResult($response->getResults());
+                    $result['place_id'] = $this->getPlaceId($response->getResults());
+                }
+            } catch (\Exception $e) {
+
             }
 
         }

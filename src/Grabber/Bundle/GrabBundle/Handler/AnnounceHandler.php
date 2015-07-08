@@ -84,6 +84,7 @@ class AnnounceHandler extends AbstractHandler
     {
         /** @var City $city */
         $city = $this->localityManager->findCity($data['city'], $this->region);
+        $country = $this->region->getCountry();
         if ($this->announceManager->hasIndex($data['announceId'])) {
             return;
         }
@@ -96,6 +97,10 @@ class AnnounceHandler extends AbstractHandler
             'category' => $this->category,
         ]);
         foreach ($data['msisdn'] as $msisdn) {
+            $msisdn = $country->formatMsisdn($msisdn);
+            if (!$country->isValidMsisdn($msisdn)) {
+                continue;
+            }
             $this->updatePerson([
                 'name'     => $data['personName'],
                 'msisdn'   => $msisdn,
