@@ -43,11 +43,9 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-//        $proxy = $this->getContainer()->get('grabber_proxy_grabber');
-//        $proxy->grab();
-//
-//        $output->writeln("<info>Services have done</info>");
-        $date = \DateTime::createFromFormat('d.m.Y', '02.10.1979');
-        var_dump($date->format('Y-m-d H:m:i'));
+        $proxy = $this->getContainer()->get('grabber_proxy_grabber');
+        $proxy->grab();
+
+        $output->writeln("<info>Services have done</info>");
     }
 }

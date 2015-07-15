@@ -1,81 +1,459 @@
 -
-    ip: 37.187.178.159
+    ip: 52.69.35.189
     port: '3128'
-    code: FR
-    country: France
+    code: JP
+    country: Japan
     anonymity: 'elite proxy'
     google: false
     https: true
-    checked: '2015-07-01 15:10:25'
+    checked: '2015-07-15 23:01:11'
 -
-    ip: 213.145.143.52
-    port: '3128'
-    code: KG
-    country: Kyrgyzstan
-    anonymity: 'elite proxy'
-    google: false
-    https: true
-    checked: '2015-07-01 15:10:25'
--
-    ip: 46.53.205.154
-    port: '8080'
-    code: BY
-    country: Belarus
-    anonymity: 'elite proxy'
-    google: false
-    https: true
-    checked: '2015-07-01 15:10:25'
--
-    ip: 27.118.20.208
-    port: '3128'
-    code: VN
-    country: Vietnam
+    ip: 196.22.53.153
+    port: '80'
+    code: MZ
+    country: Mozambique
     anonymity: 'elite proxy'
     google: true
-    https: true
-    checked: '2015-07-01 15:10:25'
+    https: false
+    checked: '2015-07-15 23:01:11'
 -
-    ip: 115.43.210.246
+    ip: 125.227.136.103
+    port: '808'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 157.7.201.140
+    port: '80'
+    code: JP
+    country: Japan
+    anonymity: 'elite proxy'
+    google: false
+    https: true
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 52.68.111.190
+    port: '3128'
+    code: JP
+    country: Japan
+    anonymity: 'elite proxy'
+    google: false
+    https: true
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 52.68.162.40
+    port: '3128'
+    code: JP
+    country: Japan
+    anonymity: 'elite proxy'
+    google: false
+    https: true
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 111.254.178.33
     port: '8088'
     code: TW
     country: Taiwan
     anonymity: 'elite proxy'
     google: false
     https: false
-    checked: '2015-07-01 15:10:25'
+    checked: '2015-07-15 23:01:11'
 -
-    ip: 200.140.199.170
-    port: '3130'
+    ip: 92.222.26.47
+    port: '3128'
+    code: FR
+    country: France
+    anonymity: 'elite proxy'
+    google: false
+    https: true
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 112.104.99.17
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 52.68.225.184
+    port: '3128'
+    code: JP
+    country: Japan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 52.69.107.242
+    port: '3128'
+    code: JP
+    country: Japan
+    anonymity: 'elite proxy'
+    google: true
+    https: true
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 111.243.69.152
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 106.104.91.41
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 114.38.94.41
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 124.9.132.183
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 175.182.184.63
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 114.42.139.251
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 114.38.100.211
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 181.113.25.235
+    port: '8080'
+    code: EC
+    country: Ecuador
+    anonymity: 'elite proxy'
+    google: false
+    https: true
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 36.233.31.217
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 177.66.111.213
+    port: '8080'
     code: BR
     country: Brazil
     anonymity: 'elite proxy'
     google: false
-    https: false
-    checked: '2015-07-01 15:10:25'
+    https: true
+    checked: '2015-07-15 23:01:11'
 -
-    ip: 118.179.220.186
+    ip: 1.173.136.124
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 122.118.106.135
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 220.136.107.58
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 111.250.123.129
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 112.104.111.28
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 54.74.67.206
+    port: '8888'
+    code: IE
+    country: Ireland
+    anonymity: 'elite proxy'
+    google: true
+    https: true
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 106.186.112.247
     port: '8080'
-    code: BD
-    country: Bangladesh
+    code: JP
+    country: Japan
     anonymity: 'elite proxy'
     google: false
     https: false
-    checked: '2015-07-01 15:10:25'
+    checked: '2015-07-15 23:01:11'
 -
-    ip: 200.47.33.177
-    port: '8000'
-    code: VE
-    country: Venezuela
+    ip: 220.136.229.120
+    port: '8088'
+    code: TW
+    country: Taiwan
     anonymity: 'elite proxy'
     google: false
     https: false
-    checked: '2015-07-01 15:10:25'
+    checked: '2015-07-15 23:01:11'
 -
-    ip: 103.29.251.231
-    port: '8080'
-    code: PH
-    country: Philippines
+    ip: 114.37.64.101
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: true
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 114.39.12.104
+    port: '8088'
+    code: TW
+    country: Taiwan
     anonymity: 'elite proxy'
     google: false
     https: false
-    checked: '2015-07-01 15:10:25'
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 1.174.150.211
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: true
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 61.230.153.97
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 118.161.172.31
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: true
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 1.164.10.52
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: true
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 114.36.41.7
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: true
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 1.173.10.227
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 112.104.140.97
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 111.250.39.26
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 118.160.42.116
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 114.37.24.68
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 112.104.15.252
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 111.240.74.93
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 219.85.205.10
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 114.39.39.43
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 61.227.70.91
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 175.182.129.85
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 124.8.138.248
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 114.38.200.232
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 114.42.138.148
+    port: '8088'
+    code: TW
+    country: Taiwan
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'
+-
+    ip: 86.57.154.17
+    port: '3128'
+    code: BY
+    country: Belarus
+    anonymity: 'elite proxy'
+    google: false
+    https: false
+    checked: '2015-07-15 23:01:11'

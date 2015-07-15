@@ -136,7 +136,7 @@ abstract class AbstractHandler implements HandlerInterface
         $command = $this->commandFactory->$method(
             $uri,
             $pattern,
-            $this->clientManager->getClient(false)
+            $this->clientManager->getClient()
         );
 
         return $command->parse();

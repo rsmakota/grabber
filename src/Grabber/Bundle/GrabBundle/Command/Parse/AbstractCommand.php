@@ -79,7 +79,7 @@ abstract class AbstractCommand implements CommandInterface
         if ($this->response->getHeader()['http_code'] != 200) {
             throw new \Exception('http code is ' . $this->response->getHeader()['http_code'] );
         }
-
+        dump($this->response->getContent());
         preg_match_all($this->pattern, $this->response->getContent(), $out);
 
         return $out;

@@ -57,7 +57,7 @@ class ProxyConfig
     public function __construct(array $config)
     {
         $this->ip        = $config['ip'];
-        $this->$port     = $config['port'];
+        $this->port      = $config['port'];
         $this->code      = $config['code'];
         $this->country   = $config['country'];
         $this->anonymity = $config['anonymity'];

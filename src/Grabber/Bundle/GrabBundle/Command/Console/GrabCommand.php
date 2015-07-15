@@ -58,6 +58,7 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         //set_time_limit(3600);
+        ini_set("memory_limit","2256M");
         $sourceName = $input->getArgument('sourceName');
         $resource = $this->findSource($sourceName);
         /** @var SimpleGrabber $service */

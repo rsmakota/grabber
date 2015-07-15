@@ -43,7 +43,7 @@ class LoadSourceData extends AbstractFixture implements OrderedFixtureInterface
                             'handle' => [
                                 'name' => 'Announce',
                                 'pattern' => [
-                                    'msisdn'     => '|<div class="phone3">([0-9\s]*)&nbsp;</div>[\s]*<div class="mpphone">([0-9\s]*)</div>|',
+                                    'msisdn'     => '|<div class="phone3">([0-9\s]*)</div>|',
                                     'city'       => '|<div class="city">[\s]*Город:[\s]*<div class="text">([^<]+)</div>|',
                                     'created'    => '|<div class="date_start">Добавлено: ([^<]+)</div>|',
                                     'announceId' => '|<div class="id_advert">ID объявления: ([^<]+)</div>|',

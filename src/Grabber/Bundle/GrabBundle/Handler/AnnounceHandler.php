@@ -98,6 +98,7 @@ class AnnounceHandler extends AbstractHandler
         ]);
         foreach ($data['msisdn'] as $msisdn) {
             $msisdn = $country->formatMsisdn($msisdn);
+            dump($msisdn);
             if (!$country->isValidMsisdn($msisdn)) {
                 continue;
             }
@@ -119,6 +120,7 @@ class AnnounceHandler extends AbstractHandler
     {
         $this->logger->addDebug('Init ' . $this->getName() . ' parse uri ' . $params->get('uri'));
         $response = $this->sendCommand($params->get('uri'), $params->get('pattern'));
+        dump($params->get('uri'));
         $this->logger->addDebug('Result ', $response->getData());
         if (!$response->isEmpty()) {
             $this->createEntities($response->getData(), $params);
