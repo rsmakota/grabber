@@ -36,13 +36,15 @@ class ClientManager implements ClientManagerInterface
      *
      * @return Client
      */
-    public function getClient($proxied = true)
+    public function getClient($proxied = false)
     {
         if (!$proxied) {
             return $this->client;
         }
         $conf = $this->proxyManager->selectConfig();
         $this->client->setProxy($conf->getIp(), $conf->getPort());
+        $this->client->setProxy($conf->getIp(), $conf->getPort());
+
         return $this->client;
     }
 }
