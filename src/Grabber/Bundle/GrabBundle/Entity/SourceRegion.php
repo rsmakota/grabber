@@ -22,9 +22,9 @@ class SourceRegion
     private $id;
 
     /**
-     * @ORM\Column(type='string')
+     * @ORM\Column(type="string")
      */
-    private $uri;
+    private $url;
 
     /**
      * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\Source")
@@ -49,14 +49,14 @@ class SourceRegion
         $this->id = $id;
     }
 
-    public function getUri()
+    public function getUrl()
     {
-        return $this->uri;
+        return $this->url;
     }
 
-    public function setUri($uri)
+    public function setUrl($uri)
     {
-        $this->uri = $uri;
+        $this->url = $uri;
     }
 
     public function getSource()
@@ -78,5 +78,11 @@ class SourceRegion
     {
         $this->region = $region;
     }
-
+    /**
+     * @return string
+     */
+    public static function clazz()
+    {
+        return get_class();
+    }
 }

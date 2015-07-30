@@ -14,6 +14,8 @@ use Grabber\Bundle\GrabBundle\Entity\CityName;
 use Grabber\Bundle\GrabBundle\Entity\Country;
 use Grabber\Bundle\GrabBundle\Entity\Region;
 use Grabber\Bundle\GrabBundle\Entity\RegionName;
+use Grabber\Bundle\GrabBundle\Entity\Source;
+use Grabber\Bundle\GrabBundle\Entity\SourceRegion;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
@@ -146,6 +148,36 @@ class LocalityManager extends BaseManager
         $this->entityManager->flush();
 
         return $city;
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return boolean
+     */
+    public function hasSourceRegion($url)
+    {
+        return (boolean) $this->entityManager->getRepository(SourceRegion::clazz())->findOneBy(['url' => $url]);
+    }
+
+    /**
+     * @param string $url
+     * @param Source $source
+     * @param Region $region
+     *
+     * @return SourceRegion
+     */
+    public function createSourceRegion($url, $source, $region)
+    {
+        $entity = new SourceRegion();
+        $entity->setUrl($url);
+        $entity->setSource($source);
+        $entity->setRegion($region);
+
+        $this->entityManager->persist($entity);
+        $this->entityManager->flush();
+
+        return $entity;
     }
 
     /**

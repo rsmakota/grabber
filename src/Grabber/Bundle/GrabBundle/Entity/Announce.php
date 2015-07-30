@@ -22,19 +22,58 @@ class Announce
     private $id;
 
     /**
-     * @ORM\Column(type='string')
+     * @ORM\Column(type="string")
      */
     private $uri;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\Region")
+     * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\SourceRegion")
      */
-    private $region;
+    private $sourceRegion;
 
     /**
-     * @ORM\Column(type='boolean')
+     * @ORM\Column(type="boolean")
      */
     private $processed;
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    public function setUri($uri)
+    {
+        $this->uri = $uri;
+    }
+
+    public function getSourceRegion()
+    {
+        return $this->sourceRegion;
+    }
+
+    public function setSourceRegion($sourceRegion)
+    {
+        $this->sourceRegion = $sourceRegion;
+    }
+
+    public function getProcessed()
+    {
+        return $this->processed;
+    }
+
+    public function setProcessed($processed)
+    {
+        $this->processed = $processed;
+    }
 
 }

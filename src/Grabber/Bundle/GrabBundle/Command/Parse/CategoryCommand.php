@@ -32,7 +32,7 @@ class CategoryCommand extends AbstractCommand
         for ($i = 0; $i < count($out[1]); $i++) {
             $categoryList[] = [
                 "uri"      => $out[1][$i],
-                "category" => $out[2][$i],
+                "category" => strip_tags($out[2][$i]),
 
             ];
         }

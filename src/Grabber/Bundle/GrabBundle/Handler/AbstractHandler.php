@@ -6,13 +6,12 @@
 
 namespace Grabber\Bundle\GrabBundle\Handler;
 
+use Doctrine\ORM\EntityManager;
 use Grabber\Bundle\GrabBundle\Client\ClientManagerInterface;
 use Grabber\Bundle\GrabBundle\Command\Parse\Response\ResponseInterface;
-use Grabber\Bundle\GrabBundle\Entity\Category;
 use Grabber\Bundle\GrabBundle\Entity\Source;
 use Grabber\Bundle\GrabBundle\Factory\ParseCommandFactory;
 use Monolog\Logger;
-use Proxies\__CG__\Grabber\Bundle\GrabBundle\Entity\Region;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 /**
@@ -23,11 +22,6 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 abstract class AbstractHandler implements HandlerInterface
 {
     /**
-     * @var HandlerInterface
-     */
-    protected $handler;
-
-    /**
      * @var ClientManagerInterface
      */
     protected $clientManager;
@@ -36,34 +30,22 @@ abstract class AbstractHandler implements HandlerInterface
      * @var ParseCommandFactory
      */
     protected $commandFactory;
+
     /**
-     * @var Category
+     * @var EntityManager
      */
-    protected $category;
-    /**
-     * @var Region
-     */
-    protected $region;
+    protected $entityManager;
+
     /**
      * @var Logger
      */
     protected $logger;
 
     /**
-     * @param Source $source
-     */
-    public function setSource($source)
-    {
-        $this->source = $source;
-        if ($this->handler) {
-            $this->handler->setSource($source);
-        }
-    }
-
-    /**
      * @var Source
      */
     protected $source;
+
     /**
      * @param ClientManagerInterface $clientManager
      * @param ParseCommandFactory    $commandFactory
@@ -72,6 +54,19 @@ abstract class AbstractHandler implements HandlerInterface
     {
         $this->clientManager  = $clientManager;
         $this->commandFactory = $commandFactory;
+    }
+
+    public function setEntityManager(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    /**
+     * @param Source $source
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
     }
 
     /**
@@ -83,37 +78,9 @@ abstract class AbstractHandler implements HandlerInterface
     }
 
     /**
-     * @param Category $category
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-        if ($this->handler) {
-            $this->handler->setCategory($category);
-        }
-
-    }
-
-    /**
-     * @param Region $region
-     */
-    public function setRegion($region)
-    {
-        $this->region = $region;
-        if ($this->handler) {
-            $this->handler->setRegion($region);
-        }
-    }
-
-    public function setHandler(HandlerInterface $handler)
-    {
-        $this->handler = $handler;
-    }
-
-    /**
      * @param ParameterBag $params
      */
-    abstract public function process(ParameterBag $params);
+    abstract public function process();
 
     /**
      * @return string
@@ -129,9 +96,9 @@ abstract class AbstractHandler implements HandlerInterface
      */
     protected function sendCommand($uri, $pattern)
     {
-        $method = 'create'.$this->getName().'Command';
+        $method = 'create' . $this->getName() . 'Command';
         if (!method_exists($this->commandFactory, $method)) {
-            throw new \Exception('Command factory doesn\'t have method "'.$method.'"');
+            throw new \Exception('Command factory doesn\'t have method "' . $method . '"');
         }
         $command = $this->commandFactory->$method(
             $uri,

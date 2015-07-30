@@ -6,8 +6,6 @@
 
 namespace Grabber\Bundle\GrabBundle\Handler;
 
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
-
 /**
  * Interface HandlerInterface
  *
@@ -16,12 +14,8 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 interface HandlerInterface
 {
     public function setSource($source);
-    public function setCategory($category);
-    public function setRegion($region);
-    /**
-     * @param ParameterBag $params
-     */
-    public function process(ParameterBag $params);
+
+    public function process();
 
     /**
      * @return string

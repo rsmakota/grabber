@@ -20,12 +20,22 @@ class Category
      * @ORM\Column(type = "integer")
      * @ORM\GeneratedValue(strategy = "AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")
      */
-    protected $name;
+    private $name;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $prefix;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Grabber\Bundle\GrabBundle\Entity\Source")
+     */
+    private $source;
 
     public function getId()
     {
@@ -45,6 +55,26 @@ class Category
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    public function getPrefix()
+    {
+        return $this->prefix;
+    }
+
+    public function setPrefix($prefix)
+    {
+        $this->prefix = $prefix;
+    }
+
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    public function setSource($source)
+    {
+        $this->source = $source;
     }
 
     /**

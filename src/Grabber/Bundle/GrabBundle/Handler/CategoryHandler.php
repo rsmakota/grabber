@@ -28,22 +28,26 @@ class CategoryHandler extends AbstractHandler
         $this->categoryManager = $categoryManager;
     }
 
-    /**
-     * @param ParameterBag $params
-     */
-    public function process(ParameterBag $params)
+    private function getUrl()
     {
-        $this->logger->addDebug('Init ' . $this->getName() . ' parse uri ' . $params->get('uri'));
-        $response = $this->sendCommand($params->get('uri'), $params->get('pattern'));
+        return $this->source->getUrl();
+    }
+
+    private function getPattern()
+    {
+        return $this->source->getConfig()['category']['pattern'];
+    }
+
+    public function process()
+    {
+        $this->logger->addDebug('Init ' . $this->getName() . ' parse uri ' . $this->getUrl());
+        $response = $this->sendCommand($this->getUrl(), $this->getPattern());
         $this->logger->addDebug('Result ', $response->getData());
-        $handleParams = new ParameterBag($params->get('handle'));
+        dump($response);
         foreach($response->getData() as $categoryData)
         {
-            $category = $this->categoryManager->getCategory($categoryData['category']);
-            $this->handler->setCategory($category);
-            $handleParams->set('uri', $categoryData['uri']);
-
-            $this->handler->process($handleParams);
+            //$category = $this->categoryManager->getCategory($categoryData['category']);
+            dump($categoryData);
         }
     }
 

@@ -46,25 +46,36 @@ class RegionHandler extends AbstractHandler
     }
 
     /**
-     * @param ParameterBag $params
-     *
+     * @return string
+     */
+    protected function getPattern()
+    {
+        return $this->source->getConfig()['region']['pattern'];
+    }
+
+    private function createSourceRegion($url, $region)
+    {
+        if ($this->localityManager->hasSourceRegion($url)) {
+            return ;
+        }
+        $this->localityManager->createSourceRegion($url, $this->source, $region);
+    }
+
+    /**
      * @throws \Exception
      */
-    public function process(ParameterBag $params)
+    public function process()
     {
         /** @var Country $country */
         $country = $this->source->getCountry();
-        $this->logger->addDebug('Init ' . $this->getName() . ' parse uri ' . $params->get('uri'));
-        $response = $this->sendCommand($params->get('uri'), $params->get('pattern'));
+        $this->logger->addDebug('Init ' . $this->getName() . ' parse uri ' . $this->source->getUrl());
+        $response = $this->sendCommand($this->source->getUrl(), $this->getPattern());
         $this->logger->addDebug('Result ', $response->getData());
-        $handleParams = new ParameterBag($params->get('handle'));
-        foreach ($response->getData() as $regionData) {
-            $regionName = $this->formatRegionName($regionData['region'], $country->getAreaName());
-            $region = $this->localityManager->findRegion($regionName, $country);
-            $this->handler->setRegion($region);
-            $handleParams->set('uri', $regionData['uri']);
 
-            $this->handler->process($handleParams);
+        foreach ($response->getData() as $regionData) {
+            $regionName   = $this->formatRegionName($regionData['region'], $country->getAreaName());
+            $regionEntity = $this->localityManager->findRegion($regionName, $country);
+            $this->createSourceRegion($regionData['uri'], $regionEntity);
         }
     }
 
