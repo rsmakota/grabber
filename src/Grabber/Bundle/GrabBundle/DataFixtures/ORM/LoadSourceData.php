@@ -34,7 +34,7 @@ class LoadSourceData extends AbstractFixture implements OrderedFixtureInterface
                     'handler' => 'grabber_region_handler'
                 ],
                 'category' => [
-                    'pattern' => '|<h3>[\s]*<a href="http:\/\/besplatka.ua\/([^"^\/]+)">([^!]+)<\/a>|',
+                    'pattern' => '|<h3>[\s]*<a href="http:\/\/besplatka.ua\/([^"^\/]+)"><div class="[^"]*"><\/div><span class="[^"]*">([^>]+)<\/span><\/a>|',
                     'handler' => 'grabber_category_handler'
                 ],
                 'page' => [
